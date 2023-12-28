@@ -1,0 +1,16 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  border-bottom: solid 2px #c9ced2;
+  background-color: #fff;
+
+  nav {
+    width: 1170px;
+    max-width: 1170px;
+  }
+}
+.logo {
+  width: 8rem;
+}
