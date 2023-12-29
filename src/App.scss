@@ -1,16 +1,58 @@
-.header {
+@mixin flexContainer($direction: row, $justify: center, $align: center) {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+// Base Styles
+button {
+  border: 0;
+  background-color: #fff;
+  cursor: pointer;
+  font: inherit;
+}
+
+// Navbar
+.header {
   padding: 12px 24px;
   border-bottom: solid 2px #c9ced2;
   background-color: #fff;
 
   nav {
-    width: 1170px;
+    @include flexContainer(row, space-between, center);
     max-width: 1170px;
+    margin: 0 auto;
+
+    .logo {
+      width: 7rem;
+    }
   }
 }
-.logo {
-  width: 8rem;
+
+.header-support {
+  @include flexContainer(row, space-evenly, center);
+
+  button:first-child {
+    padding-right: 1rem;
+    border-right: solid 1px #c9ced2;
+  }
+  button:last-child {
+    padding-left: 1rem;
+  }
+  button {
+    @include flexContainer(row, space-evenly, center);
+    * {
+      margin: 0.125rem;
+    }
+  }
+  span {
+    font-size: 1rem;
+  }
+
+  .profile {
+    img {
+      width: 2.5rem;
+    }
+  }
 }
