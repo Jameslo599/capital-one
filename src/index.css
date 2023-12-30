@@ -1,6 +1,7 @@
 @import-normalize;
 
 body {
+  min-width: 320px;
   background-color: #f4f1f3;
   margin: 0;
   font-family: "Roboto", sans-serif;

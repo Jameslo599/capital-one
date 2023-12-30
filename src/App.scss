@@ -1,8 +1,52 @@
+// Small tablets and large smartphones (landscape view)
+$screen-sm-min: 320px;
+
+// Small tablets (portrait view)
+$screen-md-min: 600px;
+
+// Tablets and small desktops
+$screen-lg-min: 1000px;
+
+// Large tablets and desktops
+$screen-xl-min: 1170px;
+
+// Small devices
+@mixin sm {
+  @media (min-width: #{$screen-sm-min}) {
+    @content;
+  }
+}
+
+// Medium devices
+@mixin md {
+  @media (min-width: #{$screen-md-min}) {
+    @content;
+  }
+}
+
+// Large devices
+@mixin lg {
+  @media (min-width: #{$screen-lg-min}) {
+    @content;
+  }
+}
+
+// Extra large devices
+@mixin xl {
+  @media (min-width: #{$screen-xl-min}) {
+    @content;
+  }
+}
+
 @mixin flexContainer($direction: row, $justify: center, $align: center) {
   display: flex;
   flex-direction: $direction;
   justify-content: $justify;
   align-items: $align;
+}
+
+@mixin lg-shadow($yposition) {
+  box-shadow: 0 $yposition 4px #0000004d;
 }
 
 // Base Styles
@@ -13,9 +57,14 @@ button {
   font: inherit;
 }
 
+a {
+  text-decoration: none;
+  color: #0a5783;
+}
+
 // Navbar
 .header {
-  padding: 12px 24px;
+  padding: 12px 6px;
   border-bottom: solid 2px #c9ced2;
   background-color: #fff;
 
@@ -29,7 +78,6 @@ button {
     }
   }
 }
-
 .header-support {
   @include flexContainer(row, space-evenly, center);
 
@@ -53,6 +101,116 @@ button {
   .profile {
     img {
       width: 2.5rem;
+    }
+  }
+  .supp-text {
+    display: none;
+
+    @include lg {
+      display: block;
+    }
+  }
+}
+
+//Banner
+.banner {
+  @include flexContainer(row, space-evenly, center);
+  height: 150px;
+  background-color: rgb(231, 228, 231);
+  box-shadow: inset 0px -2px 6px #0003;
+  @include md {
+    height: 185px;
+    font-size: 1.5rem;
+    background-color: #dbe7d9;
+  }
+
+  p {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 300;
+    text-align: center;
+    @include md {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+//Tiles
+.tile-layout {
+  padding: 18px 24px;
+
+  .account-tile {
+    @include flexContainer(column, space-evenly, flex-start);
+    @include lg-shadow(0);
+    height: auto;
+    background-image: url("./images/brand-blue.jpg");
+    color: #fff;
+    padding: 24px 24px 6px 24px;
+    border-radius: 4px 4px 0 0;
+    > div {
+      @include flexContainer(column, space-evenly, flex-start);
+      width: 100%;
+      > div {
+        @include flexContainer(column, space-evenly, flex-start);
+      }
+    }
+
+    .account-main {
+      > span:first-child {
+        font-size: 1.5rem;
+        font-weight: 300;
+
+        span {
+          font-size: 0.75rem;
+          font-weight: 400;
+        }
+      }
+      > div {
+        font-size: 3.25rem;
+        font-weight: 300;
+        margin: 12px 0 6px;
+        line-height: 1.5rem;
+        span {
+          font-size: 1.5rem;
+          vertical-align: super;
+        }
+      }
+      > span:last-child {
+        font-size: 0.75rem;
+        margin: 12px 0 6px;
+      }
+    }
+    .account-button {
+      color: #fff;
+      font-size: 1.25rem;
+      width: 100%;
+      padding: 12px;
+      margin: 6px 0 24px;
+      border: solid 2px #fff;
+      border-radius: 4px;
+      background-color: transparent;
+    }
+
+    .account-balance {
+      font-size: 0.75rem;
+      font-weight: 300;
+      padding: 6px 0;
+      border-top: dotted 1px rgba(207, 204, 207, 0.3);
+      span {
+        padding-top: 6px;
+      }
+    }
+  }
+  .account-skip {
+    @include lg-shadow(4px);
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 12px 24px;
+    border-radius: 0 0 4px 4px;
+    background-color: #00000009;
+
+    a {
+      text-decoration: underline;
     }
   }
 }
