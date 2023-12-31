@@ -4,7 +4,7 @@ import avatar from "../avatar.svg";
 function ISorting(props) {
   const fill = props.fill || "currentColor";
   const secondaryfill = props.secondaryfill || fill;
-  const strokewidth = props.strokewidth || 1;
+  const strokewidth = props.strokewidth || 3;
   const width = props.width || "24px";
   const height = props.height || "100%";
   const css = `.nc-int-sorting{--transition-duration:0.3s}.nc-int-sorting *{transform-origin:16px 22px;transition:transform var(--transition-duration) cubic-bezier(.86,0,.07,1)}.nc-int-sorting.nc-int-icon-state-b :nth-child(1){transform:translateY(-12px) rotate(-90deg)}.nc-int-sorting.nc-int-icon-state-b :nth-child(2){transform:translateY(-12px) rotate(90deg)}`;
@@ -20,6 +20,7 @@ function ISorting(props) {
     <button className="profile" onClick={handleClick}>
       <img alt="account avatar" src={avatar}></img>
       <svg
+        className="arrow"
         height={height}
         width={width}
         viewBox="0 0 32 32"

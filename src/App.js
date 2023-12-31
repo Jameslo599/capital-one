@@ -10,6 +10,7 @@ function App() {
       <MyBanner />
       <section className="tile-layout">
         <AccountTile />
+        <ExploreTile />
       </section>
     </div>
   );
@@ -78,6 +79,23 @@ function AccountTile() {
           access your account info with face or fingerprint id when you use the
           mobile app.
         </a>
+      </div>
+    </div>
+  );
+}
+
+function ExploreTile() {
+  return (
+    <div>
+      <div className="explore-tile">
+        <div>
+          <span>Explore other products</span>
+          <p>
+            Explore all our products now to find an account that's right for
+            you.
+          </p>
+        </div>
+        <button className="explore-button">Open a new account</button>
       </div>
     </div>
   );
