@@ -11,6 +11,7 @@ function App() {
       <section className="tile-layout">
         <AccountTile />
         <ExploreTile />
+        <TransactTile />
       </section>
     </div>
   );
@@ -96,6 +97,20 @@ function ExploreTile() {
           </p>
         </div>
         <button className="explore-button">Open a new account</button>
+      </div>
+    </div>
+  );
+}
+
+function TransactTile() {
+  return (
+    <div className="transact-tile">
+      <div>
+        <span>Recent Transactions</span>
+        <button className="transact-button">View More</button>
+      </div>
+      <div>
+        <p>You have no recent transactions.</p>
       </div>
     </div>
   );
