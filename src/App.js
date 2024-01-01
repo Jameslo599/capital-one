@@ -1,5 +1,6 @@
 import "./App.scss";
 import logo from "./images/logo.svg";
+import credit from "./images/credit-score.png";
 import ISorting from "./images/icons/i-sorting";
 import Comments from "./images/icons/comments";
 
@@ -12,6 +13,7 @@ function App() {
         <AccountTile />
         <ExploreTile />
         <TransactTile />
+        <CreditTile />
       </section>
     </div>
   );
@@ -111,6 +113,27 @@ function TransactTile() {
       </div>
       <div>
         <p>You have no recent transactions.</p>
+      </div>
+    </div>
+  );
+}
+
+function CreditTile() {
+  return (
+    <div className="credit-tile">
+      <div>
+        <h4>CreditWise</h4>
+        <a href="#">
+          <div className="credit-main">
+            <div>
+              <img src={credit} alt="credit score"></img>
+            </div>
+            <div>
+              <p>See Your Score in Seconds</p>
+              <span>Activate Now</span>
+            </div>
+          </div>
+        </a>
       </div>
     </div>
   );

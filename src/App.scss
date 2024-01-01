@@ -10,6 +10,9 @@ $screen-lg-min: 1000px;
 // Large tablets and desktops
 $screen-xl-min: 1170px;
 
+//Border
+$border: 1px solid #c9ced2;
+
 // Small devices
 @mixin sm {
   @media (min-width: #{$screen-sm-min}) {
@@ -61,6 +64,11 @@ $screen-xl-min: 1170px;
 }
 
 // Base Styles
+h4 {
+  font-weight: 500;
+  margin: 0;
+}
+
 button {
   border: 0;
   background-color: #fff;
@@ -71,6 +79,11 @@ button {
 a {
   text-decoration: none;
   color: #0a5783;
+}
+
+p {
+  color: #011728;
+  margin: 0;
 }
 
 // Navbar
@@ -86,6 +99,7 @@ a {
 
     .logo {
       width: 5rem;
+      vertical-align: middle;
       @include lg {
         width: 7rem;
       }
@@ -150,7 +164,6 @@ a {
   }
 
   p {
-    margin: 0;
     font-size: 1.25rem;
     font-weight: 300;
     text-align: center;
@@ -251,9 +264,7 @@ a {
       color: #011728;
     }
     p {
-      margin: 0;
       line-height: 1.5rem;
-      color: #011728;
     }
 
     .explore-button {
@@ -269,21 +280,21 @@ a {
   .transact-tile {
     width: 100%;
     background-color: #fff;
-    border: 1px solid #c9ced2;
+    border: $border;
+    margin-bottom: 18px;
     div {
       padding: 12px;
     }
     div:first-child {
       @include flexContainer(row, space-between, center);
       height: 62px;
-      border-bottom: 1px solid #c9ced2;
+      border-bottom: $border;
       padding: 6px 12px;
       font-size: 1.125rem;
     }
     p {
       font-size: 1.25rem;
       color: #687680;
-      margin: 0;
     }
     span {
       flex: 2;
@@ -296,6 +307,35 @@ a {
       padding: 0;
       margin: 0;
       width: auto;
+    }
+  }
+
+  //Credit Score
+  .credit-tile {
+    width: 100%;
+    background-color: #fff;
+    border: $border;
+    > div:first-child {
+      padding: 12px;
+    }
+    img {
+      width: 4rem;
+    }
+    p {
+      font-weight: 500;
+      margin-bottom: 9px;
+    }
+    span {
+      color: #0d74af;
+      font-weight: 400;
+    }
+
+    .credit-main {
+      @include flexContainer(row, center, center);
+      height: 197px;
+      > div:last-child {
+        margin: 0 12px;
+      }
     }
   }
 }
