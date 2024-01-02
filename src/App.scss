@@ -177,6 +177,9 @@ p {
 .tile-layout {
   @include flexContainer(column, space-evenly, center);
   padding: 18px 24px;
+  > div {
+    width: 100%;
+  }
 
   //Account
   .account-tile {
@@ -189,6 +192,9 @@ p {
     border-radius: 4px 4px 0 0;
     > div {
       @include flexContainer(column, space-evenly, flex-start);
+      @include md {
+        @include flexContainer(row, space-between, center);
+      }
       width: 100%;
       > div {
         @include flexContainer(column, space-evenly, flex-start);
@@ -221,6 +227,9 @@ p {
     }
     .account-button {
       @include button(#fff, #fff);
+      @include md {
+        width: 37%;
+      }
     }
     .account-balance {
       font-size: 0.75rem;
@@ -229,6 +238,23 @@ p {
       border-top: dotted 1px rgba(207, 204, 207, 0.3);
       span {
         padding-top: 6px;
+      }
+
+      @include md {
+        font-weight: 400;
+        .decimal {
+          display: none;
+        }
+        > div div {
+          font-size: 2rem;
+          font-weight: 300;
+          height: 30px;
+
+          > span {
+            font-size: 1rem;
+            vertical-align: super;
+          }
+        }
       }
     }
   }
@@ -273,6 +299,16 @@ p {
       border-width: 1px;
       margin: 0;
       margin-top: 12px;
+
+      @include md {
+        max-width: 186px;
+        margin: 0;
+        margin-left: calc(50% - 186px);
+      }
+    }
+
+    @include md {
+      @include flexContainer(row, space-between, flex-start);
     }
   }
 
@@ -322,7 +358,8 @@ p {
       padding: 12px;
     }
     img {
-      width: 4rem;
+      width: 30%;
+      max-width: 6rem;
     }
     p {
       font-weight: 500;
@@ -335,6 +372,9 @@ p {
     .credit-main {
       @include flexContainer(row, center, center);
       height: 197px;
+      > div:first-child {
+        width: 30%;
+      }
       > div:last-child {
         margin: 0 12px;
       }
@@ -343,6 +383,7 @@ p {
 
   //Khan Tile
   .khan-tile {
+    @include flexContainer(column, space-between, none);
     @include lg-shadow(1px);
     width: 100%;
     background-color: #fff;
@@ -399,11 +440,13 @@ p {
       padding: 12px 12px 0 12px;
     }
     img {
-      width: 4.5rem;
+      width: 100%;
+      max-width: 6.5rem;
+      min-height: 60%;
     }
     span {
       color: #0d74af;
-      font-size: 0.625rem;
+      font-size: 0.825rem;
       font-weight: 400;
     }
     span:not(:last-child) {
@@ -413,13 +456,14 @@ p {
       @include flexContainer(row, center, space-evenly);
       height: 130px;
       margin-top: 18px;
-      column-gap: 10px;
+      column-gap: 5px;
       > div {
         @include flexContainer(column, space-between, center);
         border: $border;
+        width: 100%;
 
         span:not(:last-child) {
-          padding: 0 15px;
+          padding: 0 12px;
         }
         span {
           text-align: center;
@@ -460,10 +504,8 @@ p {
       padding: 12px 12px 0 12px;
       margin-bottom: 12px;
     }
-    img {
-      width: calc(100% + 24px);
-      height: 100%;
-      background-position: center;
+    iframe {
+      border: 0;
     }
 
     .map-main {
@@ -471,6 +513,22 @@ p {
       height: 197px;
       width: 100%;
       overflow: hidden;
+    }
+  }
+
+  .widgets {
+    @include md {
+      @include flexContainer(row, flex-start, flex-start);
+      flex-wrap: wrap;
+      max-width: 100%;
+      column-gap: 10px;
+      row-gap: 10px;
+      > div {
+        max-width: 49%;
+        height: 240px;
+        flex: 1 33.3%;
+        margin: 0;
+      }
     }
   }
 }

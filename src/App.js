@@ -18,10 +18,12 @@ function App() {
         <AccountTile />
         <ExploreTile />
         <TransactTile />
-        <CreditTile />
-        <KhanTile />
-        <ShoppingTile />
-        <MapTile />
+        <div className="widgets">
+          <CreditTile />
+          <KhanTile />
+          <ShoppingTile />
+          <MapTile />
+        </div>
       </section>
     </div>
   );
@@ -79,7 +81,10 @@ function AccountTile() {
         </div>
         <div className="account-balance">
           <div>
-            <span>$0.00</span>
+            <div>
+              <span>$</span>0<span className="decimal">.</span>
+              <span>00</span>
+            </div>
             <span>CURRENT BALANCE</span>
           </div>
         </div>
@@ -132,9 +137,8 @@ function CreditTile() {
       <div>
         <h4>CreditWise</h4>
         <div className="credit-main">
-          <div>
-            <img src={credit} alt="credit score"></img>
-          </div>
+          <img src={credit} alt="credit score"></img>
+
           <div>
             <p>See Your Score in Seconds</p>
             <span>Activate Now</span>
@@ -212,7 +216,13 @@ function MapTile() {
       <div>
         <h4>Branch / ATM Finder</h4>
         <div className="map-main">
-          <img src={map} alt="capital one location"></img>
+          {/* <img src={map} alt="capital one location"></img> */}
+          <iframe
+            src="https://www.google.com/maps/d/u/0/embed?mid=1Lf3DSb4o1Q_NUzDFd1HLQRgi2gjOJWw&ehbc=2E312F"
+            width="640"
+            height="480"
+            title="capital one"
+          ></iframe>
         </div>
       </div>
     </div>
