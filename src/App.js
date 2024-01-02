@@ -1,6 +1,11 @@
 import "./App.scss";
 import logo from "./images/logo.svg";
 import credit from "./images/credit-score.png";
+import khan from "./images/money-swirl.avif";
+import macy from "./images/macys_legacy.webp";
+import map from "./images/location.png";
+import priceline from "./images/priceline.webp";
+import adidas from "./images/adidas.webp";
 import ISorting from "./images/icons/i-sorting";
 import Comments from "./images/icons/comments";
 
@@ -14,6 +19,9 @@ function App() {
         <ExploreTile />
         <TransactTile />
         <CreditTile />
+        <KhanTile />
+        <ShoppingTile />
+        <MapTile />
       </section>
     </div>
   );
@@ -123,17 +131,89 @@ function CreditTile() {
     <div className="credit-tile">
       <div>
         <h4>CreditWise</h4>
-        <a href="#">
-          <div className="credit-main">
-            <div>
-              <img src={credit} alt="credit score"></img>
-            </div>
-            <div>
-              <p>See Your Score in Seconds</p>
-              <span>Activate Now</span>
-            </div>
+        <div className="credit-main">
+          <div>
+            <img src={credit} alt="credit score"></img>
           </div>
-        </a>
+          <div>
+            <p>See Your Score in Seconds</p>
+            <span>Activate Now</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function KhanTile() {
+  return (
+    <div className="khan-tile">
+      <div>
+        <h4>Finances 101</h4>
+        <div className="khan-main">
+          <div>
+            <img src={khan} alt="money swirl"></img>
+          </div>
+          <div>
+            <p>
+              We've partnered with Khan Academy to offer a free, self-paced
+              financial literacy course.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="khan-buttons">
+        <button>Not now</button>
+        <button>Get tips</button>
+      </div>
+    </div>
+  );
+}
+
+function ShoppingTile() {
+  return (
+    <div className="shop-tile">
+      <div>
+        <h4>Credits for Shopping</h4>
+        <div className="shop-main">
+          <div>
+            <div>
+              <img src={macy} alt="macy's"></img>
+            </div>
+            <span>Up to 4% back</span>
+            <span>Get Savings</span>
+          </div>
+          <div>
+            <div>
+              <img src={priceline} alt="priceline"></img>
+            </div>
+            <span>Up to 6% back</span>
+            <span>Get Savings</span>
+          </div>
+          <div>
+            <div>
+              <img src={adidas} alt="adidas"></img>
+            </div>
+            <span>8% back</span>
+            <span>Get Savings</span>
+          </div>
+        </div>
+      </div>
+      <div className="shop-button">
+        <button>View All Offers</button>
+      </div>
+    </div>
+  );
+}
+
+function MapTile() {
+  return (
+    <div className="map-tile">
+      <div>
+        <h4>Branch / ATM Finder</h4>
+        <div className="map-main">
+          <img src={map} alt="capital one location"></img>
+        </div>
       </div>
     </div>
   );

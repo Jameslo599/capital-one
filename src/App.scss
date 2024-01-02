@@ -278,6 +278,7 @@ p {
 
   //Transactions
   .transact-tile {
+    @include lg-shadow(1px);
     width: 100%;
     background-color: #fff;
     border: $border;
@@ -312,9 +313,11 @@ p {
 
   //Credit Score
   .credit-tile {
+    @include lg-shadow(1px);
     width: 100%;
     background-color: #fff;
     border: $border;
+    margin-bottom: 12px;
     > div:first-child {
       padding: 12px;
     }
@@ -329,13 +332,145 @@ p {
       color: #0d74af;
       font-weight: 400;
     }
-
     .credit-main {
       @include flexContainer(row, center, center);
       height: 197px;
       > div:last-child {
         margin: 0 12px;
       }
+    }
+  }
+
+  //Khan Tile
+  .khan-tile {
+    @include lg-shadow(1px);
+    width: 100%;
+    background-color: #fff;
+    border: $border;
+    margin-bottom: 12px;
+    > div:first-child {
+      padding: 12px 12px 0 12px;
+    }
+    img {
+      margin-left: 9px;
+      width: 5rem;
+    }
+    p {
+      margin: 0 0 9px 12px;
+      margin-bottom: 9px;
+    }
+    span {
+      color: #0d74af;
+      font-weight: 400;
+    }
+    .khan-main {
+      @include flexContainer(row, center, center);
+      height: 130px;
+      margin-top: 12px;
+    }
+    .khan-buttons {
+      @include flexContainer(row, space-evenly, center);
+      button {
+        @include button(#0d74af, transparent);
+        height: 48px;
+        font-size: 1rem;
+        font-weight: 500;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        border: $border;
+        border-right: 0;
+        border-radius: 0;
+      }
+      button:first-child {
+        border-left: 0;
+      }
+    }
+  }
+
+  //Shop Tile
+  .shop-tile {
+    @include lg-shadow(1px);
+    width: 100%;
+    background-color: #fff;
+    border: $border;
+    margin-bottom: 12px;
+    > div:first-child {
+      padding: 12px 12px 0 12px;
+    }
+    img {
+      width: 4.5rem;
+    }
+    span {
+      color: #0d74af;
+      font-size: 0.625rem;
+      font-weight: 400;
+    }
+    span:not(:last-child) {
+      color: #011728;
+    }
+    .shop-main {
+      @include flexContainer(row, center, space-evenly);
+      height: 130px;
+      margin-top: 18px;
+      column-gap: 10px;
+      > div {
+        @include flexContainer(column, space-between, center);
+        border: $border;
+
+        span:not(:last-child) {
+          padding: 0 15px;
+        }
+        span {
+          text-align: center;
+          padding-bottom: 12px;
+        }
+      }
+      > div div {
+        @include flexContainer(column, center, center);
+        height: 60px;
+      }
+    }
+    .shop-button {
+      button {
+        @include button(#0d74af, transparent);
+        height: 48px;
+        font-size: 1rem;
+        font-weight: 500;
+        padding: 0;
+        margin: 0;
+        margin-top: 6px;
+        width: 100%;
+        border: $border;
+        border-left: 0;
+        border-right: 0;
+        border-radius: 0;
+      }
+    }
+  }
+
+  //Map Tile
+  .map-tile {
+    @include lg-shadow(1px);
+    width: 100%;
+    background-color: #fff;
+    border: $border;
+    margin-bottom: 12px;
+    h4 {
+      padding: 12px 12px 0 12px;
+      margin-bottom: 12px;
+    }
+    img {
+      width: calc(100% + 24px);
+      height: 100%;
+      background-position: center;
+    }
+
+    .map-main {
+      @include flexContainer(row, center, center);
+      height: 197px;
+      width: 100%;
+      overflow: hidden;
     }
   }
 }
