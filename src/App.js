@@ -15,14 +15,18 @@ function App() {
       <MyHeader />
       <MyBanner />
       <section className="tile-layout">
-        <AccountTile />
-        <ExploreTile />
-        <TransactTile />
-        <div className="widgets">
+        <div className="widgets-1">
+          <AccountTile />
+          <ExploreTile />
+          <TransactTile />
+        </div>
+        <div className="widgets-2">
           <CreditTile />
           <KhanTile />
           <ShoppingTile />
           <MapTile />
+          <div></div>
+          <div></div>
         </div>
       </section>
     </div>
@@ -102,17 +106,14 @@ function AccountTile() {
 
 function ExploreTile() {
   return (
-    <div>
-      <div className="explore-tile">
-        <div>
-          <span>Explore other products</span>
-          <p>
-            Explore all our products now to find an account that's right for
-            you.
-          </p>
-        </div>
-        <button className="explore-button">Open a new account</button>
+    <div className="explore-tile">
+      <div>
+        <span>Explore other products</span>
+        <p>
+          Explore all our products now to find an account that's right for you.
+        </p>
       </div>
+      <button className="explore-button">Open a new account</button>
     </div>
   );
 }
@@ -216,10 +217,8 @@ function MapTile() {
       <div>
         <h4>Branch / ATM Finder</h4>
         <div className="map-main">
-          {/* <img src={map} alt="capital one location"></img> */}
           <iframe
             src="https://www.google.com/maps/d/u/0/embed?mid=1Lf3DSb4o1Q_NUzDFd1HLQRgi2gjOJWw&ehbc=2E312F"
-            width="640"
             height="480"
             title="capital one"
           ></iframe>

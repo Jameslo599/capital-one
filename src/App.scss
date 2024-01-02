@@ -176,6 +176,8 @@ p {
 //Tiles
 .tile-layout {
   @include flexContainer(column, space-evenly, center);
+  max-width: 1170px;
+  margin: 0 auto;
   padding: 18px 24px;
   > div {
     width: 100%;
@@ -229,6 +231,10 @@ p {
       @include button(#fff, #fff);
       @include md {
         width: 37%;
+      }
+
+      &:hover {
+        transform: scale(1.1);
       }
     }
     .account-balance {
@@ -305,6 +311,10 @@ p {
         margin: 0;
         margin-left: calc(50% - 186px);
       }
+
+      &:hover {
+        background-color: rgba(201, 206, 210, 0.16);
+      }
     }
 
     @include md {
@@ -344,6 +354,10 @@ p {
       padding: 0;
       margin: 0;
       width: auto;
+
+      &:hover {
+        color: #0a5783;
+      }
     }
   }
 
@@ -354,12 +368,16 @@ p {
     background-color: #fff;
     border: $border;
     margin-bottom: 12px;
+    cursor: pointer;
     > div:first-child {
       padding: 12px;
     }
     img {
       width: 30%;
       max-width: 6rem;
+      @include md {
+        max-width: 8rem;
+      }
     }
     p {
       font-weight: 500;
@@ -423,6 +441,10 @@ p {
         border-right: 0;
         border-radius: 0;
       }
+      button:hover {
+        text-decoration: underline;
+        color: #0a5783;
+      }
       button:first-child {
         border-left: 0;
       }
@@ -431,6 +453,7 @@ p {
 
   //Shop Tile
   .shop-tile {
+    @include flexContainer(column, space-between, space-evenly);
     @include lg-shadow(1px);
     width: 100%;
     background-color: #fff;
@@ -461,6 +484,13 @@ p {
         @include flexContainer(column, space-between, center);
         border: $border;
         width: 100%;
+        &:hover {
+          cursor: pointer;
+          span:last-child {
+            text-decoration: underline;
+            color: #011728;
+          }
+        }
 
         span:not(:last-child) {
           padding: 0 12px;
@@ -490,6 +520,10 @@ p {
         border-right: 0;
         border-radius: 0;
       }
+      button:hover {
+        text-decoration: underline;
+        color: #0a5783;
+      }
     }
   }
 
@@ -506,6 +540,7 @@ p {
     }
     iframe {
       border: 0;
+      width: 100%;
     }
 
     .map-main {
@@ -516,7 +551,37 @@ p {
     }
   }
 
-  .widgets {
+  //Widget responsiveness
+  .widgets-1 {
+    @include lg {
+      @include flexContainer(column, flex-start, flex-start);
+      flex-wrap: wrap;
+      max-width: 100%;
+      height: 470px;
+      column-gap: 10px;
+      row-gap: 10px;
+      margin-bottom: 12px;
+      > div {
+        width: 100%;
+        max-width: 50%;
+        flex-basis: calc(250px);
+      }
+      .account-skip,
+      .explore-tile,
+      .transact-tile {
+        margin-bottom: 0;
+      }
+      .explore-tile {
+        flex-basis: 200px;
+      }
+      .transact-tile {
+        flex-basis: auto;
+        width: calc(50% - 10px);
+      }
+    }
+  }
+
+  .widgets-2 {
     @include md {
       @include flexContainer(row, flex-start, flex-start);
       flex-wrap: wrap;
@@ -524,10 +589,17 @@ p {
       column-gap: 10px;
       row-gap: 10px;
       > div {
-        max-width: 49%;
+        max-width: 50%;
         height: 240px;
-        flex: 1 33.3%;
+        flex: 1;
+        flex-basis: calc(50% - 10px);
         margin: 0;
+      }
+    }
+    @include lg {
+      > div {
+        max-width: 33.3%;
+        flex-basis: calc(33.3333% - 10px);
       }
     }
   }
