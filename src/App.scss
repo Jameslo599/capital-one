@@ -86,6 +86,17 @@ p {
   margin: 0;
 }
 
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  line-height: 32px;
+  border-top: 1px solid #c9ced2;
+}
+
 // Navbar
 .header {
   padding: 12px 24px;
@@ -600,6 +611,72 @@ p {
       > div {
         max-width: 33.3%;
         flex-basis: calc(33.3333% - 10px);
+      }
+    }
+  }
+}
+
+//Footer
+.footer {
+  padding: 18px 12px;
+
+  a {
+    color: #011728;
+  }
+  p {
+    font-size: 0.75rem;
+    margin-top: 24px;
+    a {
+      color: #0d74af;
+      text-decoration: underline;
+    }
+  }
+
+  .footer-list-1 {
+    > li {
+      font-size: 0.875rem;
+      font-weight: 600;
+      > ul {
+        display: none;
+      }
+    }
+    button {
+      padding: 0;
+      background-color: transparent;
+    }
+    .expand {
+      width: 0.7rem;
+      margin-right: 2px;
+    }
+  }
+  .footer-list-2 {
+    padding-top: 24px;
+    border-top: 2px solid #c9ced2;
+    li:first-child {
+      border: 0;
+    }
+    li {
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+    button {
+      background-color: transparent;
+      padding: 0;
+    }
+  }
+  .gov {
+    @include flexContainer(row, flex-start, center);
+    margin-top: 12px;
+    img {
+      height: 36px;
+      padding-right: 24px;
+    }
+    span {
+      font-size: 1rem;
+      font-weight: 500;
+      border-bottom: 1px dotted #000;
+      &:hover {
+        color: #0d74af;
       }
     }
   }
