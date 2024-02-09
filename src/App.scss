@@ -556,7 +556,7 @@ li {
 
     .map-main {
       @include flexContainer(row, center, center);
-      height: 197px;
+      height: 195px;
       width: 100%;
       overflow: hidden;
     }
@@ -594,23 +594,21 @@ li {
 
   .widgets-2 {
     @include md {
-      @include flexContainer(row, flex-start, flex-start);
+      @include flexContainer(row, space-between, flex-start);
       flex-wrap: wrap;
       max-width: 100%;
-      column-gap: 10px;
       row-gap: 10px;
       > div {
         max-width: 50%;
         height: 240px;
-        flex: 1;
-        flex-basis: calc(50% - 10px);
+        flex-basis: calc(50% - 5px);
         margin: 0;
       }
     }
     @include lg {
       > div {
         max-width: 33.3%;
-        flex-basis: calc(33.3333% - 10px);
+        flex-basis: calc(33.3333% - 5px);
       }
     }
   }
@@ -618,8 +616,8 @@ li {
 
 //Footer
 .footer {
-  padding: 18px 12px;
-
+  padding: 24px 12px 18px;
+  position: relative;
   a {
     color: #011728;
   }
@@ -631,11 +629,22 @@ li {
       text-decoration: underline;
     }
   }
+  @include md {
+    padding: 24px 24px 18px;
+    p {
+      font-size: 0.875rem;
+      margin-top: 12px;
+    }
+  }
+  @include xl {
+    max-width: 1170px;
+    margin: 0 auto;
+  }
 
   .footer-list-1 {
     > li {
       font-size: 0.875rem;
-      font-weight: 600;
+      font-weight: 500;
       > ul {
         display: none;
       }
@@ -647,6 +656,13 @@ li {
     .expand {
       width: 0.7rem;
       margin-right: 2px;
+    }
+    @include md {
+      > li {
+        display: inline;
+        padding: 12px 24px 0 0;
+        border: 0;
+      }
     }
   }
   .footer-list-2 {
@@ -663,6 +679,17 @@ li {
       background-color: transparent;
       padding: 0;
     }
+    @include md {
+      padding: 0;
+      border: 0;
+      margin-top: 12px;
+      li {
+        display: inline;
+        padding: 12px 24px 0 0;
+        border: 0;
+        line-height: 1.5rem;
+      }
+    }
   }
   .gov {
     @include flexContainer(row, flex-start, center);
@@ -672,11 +699,33 @@ li {
       padding-right: 24px;
     }
     span {
-      font-size: 1rem;
+      font-size: 0.875rem;
       font-weight: 500;
       border-bottom: 1px dotted #000;
       &:hover {
         color: #0d74af;
+      }
+    }
+    @include md {
+      margin-top: 24px;
+    }
+    @include lg {
+      height: 80px;
+      width: 174px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding-right: 24px;
+      margin-top: 12px;
+      a {
+        min-width: 75px;
+        flex: 1;
+        text-align: right;
+      }
+      img {
+        padding-right: 0;
       }
     }
   }

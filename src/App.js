@@ -27,8 +27,6 @@ function App() {
           <KhanTile />
           <ShoppingTile />
           <MapTile />
-          <div></div>
-          <div></div>
         </div>
       </section>
       <MyFooter />
