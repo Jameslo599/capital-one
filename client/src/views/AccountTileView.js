@@ -1,13 +1,13 @@
 import React from "react";
 
-function AccountTileView() {
+function AccountTileView({ user }) {
   return (
     <div>
       <div className="account-tile">
         <div>
           <div className="account-main">
             <span>
-              360 Checking <span>...9473</span>
+              360 Checking {user} <span>...9473</span>
             </span>
             <div>
               <span>$</span>0<span>00</span>

@@ -64,6 +64,23 @@ $border: 1px solid #c9ced2;
 }
 
 // Base Styles
+* {
+  box-sizing: border-box;
+}
+body {
+  min-width: 320px;
+  background-color: #f4f1f3;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
 h4 {
   font-weight: 500;
   margin: 0;
