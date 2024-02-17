@@ -1,10 +1,10 @@
 import React from "react";
 
-function MyBannerView() {
+function MyBannerView({ user }) {
   return (
     <div className="banner">
       <p>
-        2023 tax forms will be available by January 31st.{" "}
+        {user}, 2023 tax forms will be available by January 31st.{" "}
         <a href="#">Learn more.</a>
       </p>
     </div>
