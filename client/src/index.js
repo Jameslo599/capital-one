@@ -1,14 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import Home from "./views/AccountHome";
+import Login from "./views/Login";
 import NotFound from "./views/404";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <Login />,
     errorElement: <NotFound />,
+  },
+  {
+    path: "/home",
+    element: <Home />,
   },
 ]);
 
