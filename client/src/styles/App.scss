@@ -748,6 +748,25 @@ li {
   }
 }
 
+//Loading Page
+.loading {
+  > div {
+    @include flexContainer(column, center, center);
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .spinner-container {
+    width: 5rem;
+  }
+  h1 {
+    font-size: 1.25rem;
+    margin-top: 12px;
+    color: #011728;
+  }
+}
+
 //404 Page
 .not-found,
 .login {
@@ -942,6 +961,7 @@ li {
             /* For iOS < 15 to remove gradient background */
             background-color: #fff;
             /* Not removed via appearance */
+            cursor: pointer;
             margin: 0;
             width: 1.5rem;
             height: 1.5rem;
@@ -969,6 +989,7 @@ li {
             }
           }
           label {
+            cursor: pointer;
             font-weight: 300;
             padding-left: 6px;
           }
@@ -1001,5 +1022,89 @@ li {
 
   .footer-container {
     background-color: #fff;
+  }
+}
+
+//Forgot Page
+.forgot {
+  .not-found,
+  .login {
+    height: auto;
+  }
+  .header-support {
+    border-bottom: 0.5px solid #bdbdbd00;
+    &:hover {
+      border-bottom: 0.5px solid #bdbdbd;
+    }
+    svg {
+      display: none;
+    }
+    img {
+      width: 2rem;
+      @include lg {
+        width: 2.5rem;
+      }
+    }
+    button:first-child {
+      border: 0;
+      padding: 0;
+    }
+    span {
+      font-weight: 300;
+      padding-left: 0.5rem;
+    }
+  }
+  .section-container {
+    background-color: #f4f4f4;
+    @include md {
+      height: 100%;
+    }
+  }
+  section:first-child {
+    .message {
+      background-color: transparent;
+      padding: 0;
+      border: 0;
+      box-shadow: unset;
+      h1 {
+        font-weight: 300;
+        margin: 0 12px 24px;
+        @include md {
+          font-size: 2rem;
+        }
+      }
+      p {
+        margin: 0;
+        text-align: left;
+        font-weight: 500;
+        @include md {
+          font-weight: 300;
+          text-align: center;
+        }
+      }
+      div:first-child {
+        width: 100%;
+      }
+      img {
+        width: 4.5rem;
+        margin-top: 0;
+        @include md {
+          width: 6rem;
+        }
+      }
+    }
+  }
+  .find-me.login {
+    .message-box {
+      margin-top: 12px;
+      margin-bottom: 48px;
+      padding: 24px 18px;
+      label {
+        font-weight: 500;
+      }
+      .login-button {
+        margin: 30px 0 0;
+      }
+    }
   }
 }

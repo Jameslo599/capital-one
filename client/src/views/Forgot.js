@@ -2,19 +2,25 @@ import { Link } from "react-router-dom";
 import logo from "../images/logo.svg";
 import fdic from "../images/fdic.jpg";
 import house from "../images/house.jpg";
-import { useNavigate } from "react-router-dom";
+import forgot from "../images/forgot.png";
 import { useState } from "react";
+import ISorting from "../images/icons/i-sorting";
 
-function Login() {
+function Forgot() {
   const [formData, setFormData] = useState({
-    username: "",
-    password: "",
+    lname: "",
+    ssn: "",
+    dob: "",
   });
-  const navigate = useNavigate();
+
+  const onlyNumbers = (e) => {
+    if (e.which < 48 || e.which > 57) {
+      e.preventDefault();
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
@@ -23,13 +29,13 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    formData.remember = formData.remember === "" ? "checked" : "unchecked";
-    console.log(formData);
-    navigate("/home");
+    for (const ele in formData) {
+      console.log(`${ele} : ${formData[ele]}`);
+    }
   };
 
   return (
-    <div className="login">
+    <div className="login forgot">
       <div>
         <header className="header">
           <nav>
@@ -38,58 +44,73 @@ function Login() {
                 <img className="logo" alt="capital one logo" src={logo}></img>
               </Link>
             </div>
+            <Link className="header-support" to={"/"}>
+              <ISorting />
+              <span>Sign In</span>
+            </Link>
           </nav>
         </header>
       </div>
-      <section className="login">
-        <div className="message-box">
-          <div>
-            <img src={logo} alt="capital one logo"></img>
+      <div className="section-container">
+        <section className="not-found">
+          <div className="message-box message">
+            <div>
+              <img src={forgot} alt="404 traffic cone"></img>
+            </div>
+            <h1>First, let's find your username</h1>
+            <p>
+              This information will help us locate your Capital One online
+              account(s). If needed, you can update your password after account
+              lookup.
+            </p>
           </div>
-          <h1>Sign In</h1>
-          <form onSubmit={handleSubmit}>
-            <div className="form-text">
-              <label htmlFor="username">Username</label>
-              <input
-                type="text"
-                name="username"
-                id="username"
-                value={formData.username}
-                onChange={handleChange}
-                required
-              ></input>
-            </div>
-            <div className="form-text">
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                name="password"
-                id="password"
-                value={formData.password}
-                onChange={handleChange}
-                required
-              ></input>
-            </div>
-            <div className="remember-me">
-              <input
-                type="checkbox"
-                name="remember"
-                id="remember"
-                value={formData.checked}
-                onChange={handleChange}
-              ></input>
-              <label htmlFor="remember">Remember Me</label>
-            </div>
-            <div className="login-button">
-              <button type="submit">Sign In</button>
-            </div>
-          </form>
-          <div className="forgot">
-            <Link to={"/forgot"}>Forgot Username or Password?</Link>
-            <a>Sign Up Here</a>
+        </section>
+        <section className="login find-me">
+          <div className="message-box">
+            <form onSubmit={handleSubmit}>
+              <div className="form-text">
+                <label htmlFor="lname">Last Name</label>
+                <input
+                  type="text"
+                  name="lname"
+                  id="lname"
+                  value={formData.lname}
+                  onChange={handleChange}
+                  required
+                ></input>
+              </div>
+              <div className="form-text">
+                <label htmlFor="ssn">Social Security Number</label>
+                <input
+                  type="password"
+                  name="ssn"
+                  id="ssn"
+                  value={formData.ssn}
+                  onChange={handleChange}
+                  onKeyDown={onlyNumbers}
+                  required
+                ></input>
+              </div>
+              <div className="form-text">
+                <label htmlFor="dob">Date of Birth</label>
+                <input
+                  type="date"
+                  name="dob"
+                  id="dob"
+                  max="9999-12-31"
+                  value={formData.dob}
+                  onChange={handleChange}
+                  required
+                ></input>
+              </div>
+              <div className="login-button">
+                <button type="submit">Find Me</button>
+              </div>
+            </form>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
+
       <div className="footer-container">
         <footer className="footer">
           <div>
@@ -216,4 +237,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Forgot;

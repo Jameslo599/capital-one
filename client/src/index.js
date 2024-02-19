@@ -4,6 +4,7 @@ import Home from "./views/AccountHome";
 import Login from "./views/Login";
 import NotFound from "./views/404";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Forgot from "./views/Forgot";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
   {
     path: "/home",
     element: <Home />,
+  },
+  {
+    path: "/forgot",
+    element: <Forgot />,
   },
 ]);
 

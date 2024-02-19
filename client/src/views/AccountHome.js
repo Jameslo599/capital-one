@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../styles/reset.scss";
 import "../styles/App.scss";
+import Loading from "./Loading";
 import MyHeaderView from "./MyHeaderView";
 import MyBannerView from "./MyBannerView";
 import AccountTileView from "./AccountTileView";
@@ -26,7 +27,7 @@ function Home() {
   return (
     <div>
       {!backendData.length ? (
-        <p>Loading...</p>
+        <Loading />
       ) : (
         <div className="App">
           <MyHeaderView />
