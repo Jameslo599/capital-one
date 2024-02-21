@@ -9,15 +9,16 @@ module.exports = {
       console.log(err);
     }
   },
-  // createTodo: async (req, res)=>{
-  //     try{
-  //         await Account.create({ user: "James", balance: "500000" });
-  //         console.log('Todo has been added!')
-  //         res.redirect('/todos')
-  //     }catch(err){
-  //         console.log(err)
-  //     }
-  // },
+  createAccount: async (req, res) => {
+    try {
+      await console.log(req.body);
+      await Account.create(req.body);
+      console.log("Account has been created!");
+      res.json("Account has been created!");
+    } catch (err) {
+      console.log(err);
+    }
+  },
   // deleteTodo: async (req, res)=>{
   //     console.log(req.body.todoIdFromJSFile)
   //     try{

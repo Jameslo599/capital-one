@@ -17,11 +17,18 @@ function Home() {
   const [backendData, setBackendData] = useState({});
 
   useEffect(() => {
-    fetch("/api")
-      .then((response) => response.json())
-      .then((data) => {
+    const personalize = async () => {
+      try {
+        const response = await fetch("/api");
+        fetch("/api");
+        const data = await response.json();
         setBackendData(data);
-      });
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+    personalize();
   }, []);
 
   return (
@@ -31,7 +38,7 @@ function Home() {
       ) : (
         <div className="App">
           <MyHeaderView />
-          <MyBannerView user={backendData[0].user} />
+          <MyBannerView user={backendData[0].fname} />
           <section className="tile-layout">
             <div className="widgets-1">
               <AccountTileView />

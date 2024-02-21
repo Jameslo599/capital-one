@@ -753,9 +753,6 @@ li {
   > div {
     @include flexContainer(column, center, center);
     width: 100%;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
   }
   .spinner-container {
     width: 5rem;
@@ -771,8 +768,8 @@ li {
 .not-found,
 .login {
   @include flexContainer(column, space-between, unset);
-  height: 100vh;
   background-color: #fafafa;
+  height: 100vh;
   .header {
     border-width: 1px;
     .logo {
@@ -786,7 +783,7 @@ li {
     background-color: #fafafa;
     padding: 32px;
     @include md {
-      padding-top: 72px;
+      padding-top: 92px;
     }
     .message-box {
       @include flexContainer(column, space-evenly, center);
@@ -896,18 +893,15 @@ li {
 
 //Login Page
 .login {
+  justify-content: center;
   section {
     padding: 0;
     background-color: #f4f4f4;
-    @include md {
-      padding-top: 32px;
-    }
     .message-box {
       @include lg-shadow(1px);
       height: fit-content;
       padding: 12px 18px 36px;
       border: 1px solid #c9ced2;
-      margin: 24px;
       background-color: #fff;
       border-radius: 8px;
       @include md {
@@ -1027,6 +1021,7 @@ li {
 
 //Forgot Page
 .forgot {
+  justify-content: unset;
   .not-found,
   .login {
     height: auto;
@@ -1056,6 +1051,7 @@ li {
   }
   .section-container {
     background-color: #f4f4f4;
+    padding: 24px;
     @include md {
       height: 100%;
     }
@@ -1063,7 +1059,7 @@ li {
   section:first-child {
     .message {
       background-color: transparent;
-      padding: 0;
+
       border: 0;
       box-shadow: unset;
       h1 {
@@ -1096,8 +1092,6 @@ li {
   }
   .find-me.login {
     .message-box {
-      margin-top: 12px;
-      margin-bottom: 48px;
       padding: 24px 18px;
       label {
         font-weight: 500;
@@ -1106,5 +1100,11 @@ li {
         margin: 30px 0 0;
       }
     }
+  }
+}
+//Create Account Page
+.create {
+  @include md {
+    height: auto;
   }
 }

@@ -9,7 +9,7 @@ function MyHeaderView() {
       <header className="header">
         <nav>
           <div>
-            <a href="#">
+            <a href="/home">
               <img className="logo" alt="capital one logo" src={logo}></img>
             </a>
           </div>

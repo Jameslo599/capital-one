@@ -4,20 +4,28 @@ import fdic from "../images/fdic.jpg";
 import house from "../images/house.jpg";
 import { useState } from "react";
 import ISorting from "../images/icons/i-sorting";
+import Loading from "./Loading";
 
 function SignUp() {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
+    email: "",
     fname: "",
     lname: "",
     ssn: "",
     dob: "",
+    balance: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [status, setStatus] = useState();
+  const [error, setError] = useState();
+
   const navigate = useNavigate();
 
   const onlyNumbers = (e) => {
     if (e.which < 48 || e.which > 57) {
+      if (e.key === "Backspace" || e.key === "Delete") return;
       e.preventDefault();
     }
   };
@@ -30,16 +38,29 @@ function SignUp() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    for (const ele in formData) {
-      console.log(`${ele} : ${formData[ele]}`);
+    setIsLoading(true);
+    try {
+      const response = await fetch("api/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const confirmation = await response.json();
+      setStatus(confirmation);
+      navigate("/home");
+    } catch (e) {
+      setError(e);
+    } finally {
+      setIsLoading(false);
     }
-    navigate("/");
   };
 
   return (
-    <div className="login forgot">
+    <div className="login forgot create">
       <div>
         <header className="header">
           <nav>
@@ -81,6 +102,17 @@ function SignUp() {
                   name="password"
                   id="password"
                   value={formData.password}
+                  onChange={handleChange}
+                  required
+                ></input>
+              </div>
+              <div className="form-text">
+                <label htmlFor="email">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  value={formData.email}
                   onChange={handleChange}
                   required
                 ></input>
@@ -131,7 +163,26 @@ function SignUp() {
                   required
                 ></input>
               </div>
+              <div className="form-text">
+                <label htmlFor="balance">Initial Deposit</label>
+                <input
+                  type="text"
+                  name="balance"
+                  id="balance"
+                  value={formData.balance}
+                  onChange={handleChange}
+                  onKeyDown={onlyNumbers}
+                  placeholder="USD"
+                  required
+                ></input>
+              </div>
               <div className="login-button">
+                {isLoading && <Loading status={status} />}
+                {error && (
+                  <span>
+                    An error has occurred! Please refresh and try again.
+                  </span>
+                )}
                 <button type="submit">Open Account</button>
               </div>
             </form>
