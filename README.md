@@ -5,3 +5,4 @@ It's to know that React runs the callback of an useEffect after all others norma
 i love how in single page apps you can just import css to the root and it will apply to all pages
 using finally in the try catch block to make a better ui experience.
 using usestate to render different conditions for the user to see.
+Practiced building requests and using res.status codes

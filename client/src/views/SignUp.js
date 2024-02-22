@@ -18,7 +18,6 @@ function SignUp() {
     balance: "",
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [status, setStatus] = useState();
   const [error, setError] = useState();
 
   const navigate = useNavigate();
@@ -50,7 +49,7 @@ function SignUp() {
         body: JSON.stringify(formData),
       });
       const confirmation = await response.json();
-      setStatus(confirmation);
+      setError(confirmation);
       navigate("/home");
     } catch (e) {
       setError(e);
@@ -177,7 +176,7 @@ function SignUp() {
                 ></input>
               </div>
               <div className="login-button">
-                {isLoading && <Loading status={status} />}
+                {isLoading && <Loading />}
                 {error && (
                   <span>
                     An error has occurred! Please refresh and try again.

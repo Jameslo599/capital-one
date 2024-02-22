@@ -764,6 +764,13 @@ li {
   }
 }
 
+.full-screen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 //404 Page
 .not-found,
 .login {
@@ -833,7 +840,7 @@ li {
   .footer-container {
     flex: 0;
     width: 100%;
-    background-color: #f7f7f7;
+    background-color: #f4f4f4;
     border-top: 1px solid #c9ced2;
     .footer {
       width: 100%;
@@ -893,10 +900,14 @@ li {
 
 //Login Page
 .login {
-  justify-content: center;
+  @include md {
+    justify-content: center;
+  }
+  .section-container {
+    background-color: #fafafa;
+  }
   section {
     padding: 0;
-    background-color: #f4f4f4;
     .message-box {
       @include lg-shadow(1px);
       height: fit-content;
@@ -904,6 +915,7 @@ li {
       border: 1px solid #c9ced2;
       background-color: #fff;
       border-radius: 8px;
+      margin: 24px;
       @include md {
         width: 28.5rem;
         padding: 36px 64px;
@@ -994,7 +1006,7 @@ li {
           button {
             width: 100%;
             max-width: none;
-            margin: 0;
+            margin: 12px 0 0;
             background-color: #128020;
             &:hover {
               background-color: #0e6018;
@@ -1015,7 +1027,7 @@ li {
   }
 
   .footer-container {
-    background-color: #fff;
+    background-color: #f4f4f4;
   }
 }
 
@@ -1050,7 +1062,6 @@ li {
     }
   }
   .section-container {
-    background-color: #f4f4f4;
     padding: 24px;
     @include md {
       height: 100%;
@@ -1059,7 +1070,7 @@ li {
   section:first-child {
     .message {
       background-color: transparent;
-
+      margin: 0 auto;
       border: 0;
       box-shadow: unset;
       h1 {
@@ -1093,6 +1104,7 @@ li {
   .find-me.login {
     .message-box {
       padding: 24px 18px;
+      margin: 0 auto;
       label {
         font-weight: 500;
       }

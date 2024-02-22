@@ -4,12 +4,16 @@ import fdic from "../images/fdic.jpg";
 import house from "../images/house.jpg";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import Loading from "./Loading";
 
 function Login() {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
+    remember: false,
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -21,11 +25,35 @@ function Login() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleBox = () => {
+    const value = formData.remember === false ? true : false;
+    setFormData((prevState) => ({
+      ...prevState,
+      remember: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    formData.remember = formData.remember === "" ? "checked" : "unchecked";
+    setIsLoading(true);
     console.log(formData);
-    navigate("/home");
+    try {
+      const response = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const confirmation = await response.json();
+      setError(confirmation);
+      if (confirmation === "Success!")
+        navigate(`/home/${formData.username.toLowerCase()}`);
+    } catch (error) {
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -75,12 +103,13 @@ function Login() {
                 type="checkbox"
                 name="remember"
                 id="remember"
-                value={formData.checked}
-                onChange={handleChange}
+                onChange={handleBox}
               ></input>
               <label htmlFor="remember">Remember Me</label>
             </div>
             <div className="login-button">
+              {isLoading && <Loading />}
+              {error && <span>{error}</span>}
               <button type="submit">Sign In</button>
             </div>
           </form>

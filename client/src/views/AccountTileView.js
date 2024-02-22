@@ -1,6 +1,6 @@
 import React from "react";
 
-function AccountTileView() {
+function AccountTileView({ balance }) {
   return (
     <div>
       <div className="account-tile">
@@ -10,7 +10,9 @@ function AccountTileView() {
               360 Checking <span>...9473</span>
             </span>
             <div>
-              <span>$</span>0<span>00</span>
+              <span>$</span>
+              {balance}
+              <span>00</span>
             </div>
             <span>AVAILABLE BALANCE</span>
           </div>
@@ -19,7 +21,9 @@ function AccountTileView() {
         <div className="account-balance">
           <div>
             <div>
-              <span>$</span>0<span className="decimal">.</span>
+              <span>$</span>
+              {balance}
+              <span className="decimal">.</span>
               <span>00</span>
             </div>
             <span>CURRENT BALANCE</span>
