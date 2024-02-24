@@ -1,9 +1,11 @@
+const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
 
 const AccountSchema = new mongoose.Schema({
-  username: {
+  userName: {
     type: String,
     required: true,
+    unique: true,
   },
   password: {
     type: String,
@@ -12,16 +14,13 @@ const AccountSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
+    unique: true,
   },
   fname: {
     type: String,
     required: true,
   },
   lname: {
-    type: String,
-    required: true,
-  },
-  ssn: {
     type: String,
     required: true,
   },
@@ -34,5 +33,35 @@ const AccountSchema = new mongoose.Schema({
     required: true,
   },
 });
+
+// Password hash middleware.
+AccountSchema.pre("save", function save(next) {
+  const user = this;
+  if (!user.isModified("password")) {
+    return next();
+  }
+  bcrypt.genSalt(10, (err, salt) => {
+    if (err) {
+      return next(err);
+    }
+    bcrypt.hash(user.password, salt, (err, hash) => {
+      if (err) {
+        return next(err);
+      }
+      user.password = hash;
+      next();
+    });
+  });
+});
+
+// Helper method for validating user's password.
+AccountSchema.methods.comparePassword = function comparePassword(
+  candidatePassword,
+  cb
+) {
+  bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
+    cb(err, isMatch);
+  });
+};
 
 module.exports = mongoose.model("Account", AccountSchema);

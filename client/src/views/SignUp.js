@@ -5,15 +5,16 @@ import house from "../images/house.jpg";
 import { useState } from "react";
 import ISorting from "../images/icons/i-sorting";
 import Loading from "./Loading";
+import { ToastContainer, toast, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function SignUp() {
   const [formData, setFormData] = useState({
-    username: "",
+    userName: "",
     password: "",
     email: "",
     fname: "",
     lname: "",
-    ssn: "",
     dob: "",
     balance: "",
   });
@@ -21,6 +22,32 @@ function SignUp() {
   const [error, setError] = useState();
 
   const navigate = useNavigate();
+
+  const notifyError = (message) =>
+    toast.error(message, {
+      position: "top-center",
+      autoClose: false,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      transition: Bounce,
+    });
+  const notifySuccess = () =>
+    toast.success("Success", {
+      position: "top-center",
+      autoClose: false,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      transition: Bounce,
+    });
+  const dismissAll = () => toast.dismiss();
 
   const onlyNumbers = (e) => {
     if (e.which < 48 || e.which > 57) {
@@ -39,9 +66,10 @@ function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    dismissAll();
     setIsLoading(true);
     try {
-      const response = await fetch("api/create", {
+      const response = await fetch("/api/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -49,10 +77,20 @@ function SignUp() {
         body: JSON.stringify(formData),
       });
       const confirmation = await response.json();
-      setError(confirmation);
-      navigate("/home");
+      const status = await response.status;
+      if (status === 200) {
+        notifySuccess();
+        return navigate(`/home/${confirmation}`);
+      }
+      if (typeof confirmation === "string") notifyError(confirmation);
+      if (typeof confirmation !== "string") {
+        for (const error of confirmation) {
+          notifyError(`${error.msg}`);
+        }
+      }
     } catch (e) {
       setError(e);
+      notifyError(error);
     } finally {
       setIsLoading(false);
     }
@@ -60,6 +98,7 @@ function SignUp() {
 
   return (
     <div className="login forgot create">
+      <ToastContainer />
       <div>
         <header className="header">
           <nav>
@@ -82,14 +121,14 @@ function SignUp() {
               <img src={logo} alt="capital one logo"></img>
             </div>
             <h1>Open a 360 Checking Account</h1>
-            <form onSubmit={handleSubmit}>
+            <form method="POST" onSubmit={handleSubmit}>
               <div className="form-text">
-                <label htmlFor="username">Username</label>
+                <label htmlFor="userName">Username</label>
                 <input
                   type="text"
-                  name="username"
-                  id="username"
-                  value={formData.username}
+                  name="userName"
+                  id="userName"
+                  value={formData.userName}
                   onChange={handleChange}
                   required
                 ></input>
@@ -139,18 +178,6 @@ function SignUp() {
                 ></input>
               </div>
               <div className="form-text">
-                <label htmlFor="ssn">Social Security Number</label>
-                <input
-                  type="password"
-                  name="ssn"
-                  id="ssn"
-                  value={formData.ssn}
-                  onChange={handleChange}
-                  onKeyDown={onlyNumbers}
-                  required
-                ></input>
-              </div>
-              <div className="form-text">
                 <label htmlFor="dob">Date of Birth</label>
                 <input
                   type="date"
@@ -177,11 +204,6 @@ function SignUp() {
               </div>
               <div className="login-button">
                 {isLoading && <Loading />}
-                {error && (
-                  <span>
-                    An error has occurred! Please refresh and try again.
-                  </span>
-                )}
                 <button type="submit">Open Account</button>
               </div>
             </form>
