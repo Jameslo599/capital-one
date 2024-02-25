@@ -68,6 +68,7 @@ function SignUp() {
     e.preventDefault();
     dismissAll();
     setIsLoading(true);
+    formData.userName = formData.userName.split(" ").join("");
     try {
       const response = await fetch("/api/create", {
         method: "POST",

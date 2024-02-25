@@ -11,21 +11,21 @@ import KhanTileView from "./KhanTileView";
 import ShoppingTileView from "./ShoppingTileView";
 import MapTileView from "./MapTileView";
 import MyFooterView from "./MyFooterView";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import CircleAnim2 from "../images/icons/circle-anim-2";
 
 function Home() {
-  const [backendData, setBackendData] = useState({});
+  const [backendData, setBackendData] = useState(null);
   const [error, setError] = useState();
   const params = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const personalize = async () => {
       try {
-        console.log(params.username);
         const response = await fetch(`/api/user/${params.username}`);
         const data = await response.json();
-        console.log(data);
+        if (!data) return navigate("/");
         setBackendData(data);
       } catch (e) {
         setError(e);
@@ -33,11 +33,11 @@ function Home() {
     };
 
     personalize();
-  }, [params.username]);
+  });
 
   return (
     <div>
-      {!backendData.length ? (
+      {!backendData ? (
         <div className="loading full-screen">
           <div>
             <div className="spinner-container">
@@ -52,10 +52,10 @@ function Home() {
       ) : (
         <div className="App">
           <MyHeaderView />
-          <MyBannerView user={backendData[0].fname} />
+          <MyBannerView user={backendData.fname} />
           <section className="tile-layout">
             <div className="widgets-1">
-              <AccountTileView balance={backendData[0].balance} />
+              <AccountTileView balance={backendData.balance} />
               <ExploreTileView />
               <TransactTileView />
             </div>

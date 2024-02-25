@@ -5,16 +5,43 @@ import house from "../images/house.jpg";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Loading from "./Loading";
+import { ToastContainer, toast, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
   const [formData, setFormData] = useState({
-    username: "",
+    userName: "",
     password: "",
     remember: false,
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState();
   const navigate = useNavigate();
+
+  const notifyError = (message) =>
+    toast.error(message, {
+      position: "top-center",
+      autoClose: false,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      transition: Bounce,
+    });
+  const notifySuccess = () =>
+    toast.success("Success! Logging in...", {
+      position: "top-center",
+      autoClose: false,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      transition: Bounce,
+    });
+  const dismissAll = () => toast.dismiss();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,6 +62,7 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    dismissAll();
     setIsLoading(true);
     console.log(formData);
     try {
@@ -46,11 +74,14 @@ function Login() {
         body: JSON.stringify(formData),
       });
       const confirmation = await response.json();
-      setError(confirmation);
-      if (confirmation === "Success!")
-        navigate(`/home/${formData.username.toLowerCase()}`);
-    } catch (error) {
-      setError(error);
+      const status = await response.status;
+      if (status === 200) {
+        notifySuccess();
+        navigate(`/home/${formData.userName.toLowerCase()}`);
+      }
+      notifyError(confirmation.msg);
+    } catch (e) {
+      notifyError(e);
     } finally {
       setIsLoading(false);
     }
@@ -58,6 +89,7 @@ function Login() {
 
   return (
     <div className="login">
+      <ToastContainer />
       <div>
         <header className="header">
           <nav>
@@ -77,12 +109,12 @@ function Login() {
           <h1>Sign In</h1>
           <form onSubmit={handleSubmit}>
             <div className="form-text">
-              <label htmlFor="username">Username</label>
+              <label htmlFor="userName">Username</label>
               <input
                 type="text"
-                name="username"
-                id="username"
-                value={formData.username}
+                name="userName"
+                id="userName"
+                value={formData.userName}
                 onChange={handleChange}
                 required
               ></input>
@@ -109,7 +141,6 @@ function Login() {
             </div>
             <div className="login-button">
               {isLoading && <Loading />}
-              {error && <span>{error}</span>}
               <button type="submit">Sign In</button>
             </div>
           </form>

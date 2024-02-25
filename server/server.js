@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
-const flash = require("express-flash");
 const logger = require("morgan");
 const connectDB = require("./config/database");
 const accountRoutes = require("./routes/accounts");
@@ -46,8 +45,6 @@ app.use(
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.use(flash());
 
 app.use("/api", accountRoutes);
 
