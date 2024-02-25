@@ -1,7 +1,7 @@
 import React from "react";
-import fdic from "../images/fdic.jpg";
-import house from "../images/house.jpg";
-import ShowToHide from "../images/icons/show-to-hide";
+import fdic from "../../images/fdic.jpg";
+import house from "../../images/house.jpg";
+import ShowToHide from "../../images/icons/show-to-hide";
 
 function MyFooterView() {
   return (

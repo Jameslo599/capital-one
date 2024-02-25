@@ -1,12 +1,12 @@
-import { Link, useNavigate } from "react-router-dom";
-import logo from "../images/logo.svg";
-import fdic from "../images/fdic.jpg";
-import house from "../images/house.jpg";
 import { useState } from "react";
-import ISorting from "../images/icons/i-sorting";
-import Loading from "./Loading";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import logo from "../../images/logo.svg";
+import HeaderSupport from "../primatives/HeaderSupport";
+import Loading from "../components/Loading";
+import MyHeaderView from "../components/MyHeaderView";
+import MyFooterView from "../components/MyFooterView";
 
 function SignUp() {
   const [formData, setFormData] = useState({
@@ -100,21 +100,10 @@ function SignUp() {
   return (
     <div className="login forgot create">
       <ToastContainer />
-      <div>
-        <header className="header">
-          <nav>
-            <div>
-              <Link to="/">
-                <img className="logo" alt="capital one logo" src={logo}></img>
-              </Link>
-            </div>
-            <Link className="header-support" to={"/"}>
-              <ISorting />
-              <span>Sign In</span>
-            </Link>
-          </nav>
-        </header>
-      </div>
+      <MyHeaderView
+        logoEnd={"/"}
+        headerSupport={<HeaderSupport helpButton={""} signText={"Sign In"} />}
+      />
       <div className="section-container">
         <section className="login find-me">
           <div className="message-box">
@@ -211,129 +200,7 @@ function SignUp() {
           </div>
         </section>
       </div>
-
-      <div className="footer-container">
-        <footer className="footer">
-          <div>
-            <ul className="footer-list-2">
-              <li>
-                <a
-                  href="https://www.capitalone.com/help-center/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  HELP
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.capitalone.com/help-center/contact-us/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  CONTACT US
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.capitalone.com/privacy/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  PRIVACY
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.capitalone.com/digital/identity-protection/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  SECURITY
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.capitalone.com/digital/terms-conditions/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  TERMS & CONDITIONS
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.capitalone.com/accessibility/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  ACCESSIBILITY
-                </a>
-              </li>
-            </ul>
-            <ul className="footer-list-2 footer-list-3">
-              <li>
-                <a
-                  href="https://www.capitalone.com/military/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  SERVICE MEMBERS CIVIL RELIEF ACT
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://ecm.capitalone.com/WCM/navigation/patriot-act-certification-cof-master_ada_2021.pdf"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  PATRIOT ACT CERT
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.capitalone.com/digital/subpoena-policy/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  SUBPOENA POLICY
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.capitalone.com/digital/disclosures/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  ADDITIONAL DISCLOSURES
-                </a>
-              </li>
-            </ul>
-            <div className="gov">
-              <a href="https://www.fdic.gov/" target="_blank" rel="noreferrer">
-                <img
-                  src={fdic}
-                  alt="federal deposit insurance corporation"
-                ></img>
-              </a>
-              <a
-                href="https://www.occ.gov/publications-and-resources/publications/consumer-protection-pubs/files/equal-housing-lender.html"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <img src={house} alt="equal housing lender"></img>
-              </a>
-              <a
-                href="https://www.jameshlo.com/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span>© 2024 James H Lo</span>
-              </a>
-            </div>
-          </div>
-        </footer>
-      </div>
+      <MyFooterView />
     </div>
   );
 }

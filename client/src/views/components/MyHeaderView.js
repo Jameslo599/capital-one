@@ -1,13 +1,11 @@
 import React from "react";
-import logo from "../images/logo.svg";
-import ISorting from "../images/icons/i-sorting";
-import Comments from "../images/icons/comments";
 import { Link, useNavigate } from "react-router-dom";
+import logo from "../../images/logo.svg";
 
-function MyHeaderView() {
+function MyHeaderView({ logoEnd, headerSupport }) {
   const navigate = useNavigate();
   const refreshPage = () => {
-    navigate(0);
+    navigate(logoEnd);
   };
 
   return (
@@ -19,13 +17,7 @@ function MyHeaderView() {
               <img className="logo" alt="capital one logo" src={logo}></img>
             </Link>
           </div>
-          <div className="header-support">
-            <button>
-              <Comments />
-              <span className="supp-text">Need Help?</span>
-            </button>
-            <ISorting />
-          </div>
+          {headerSupport}
         </nav>
       </header>
     </div>

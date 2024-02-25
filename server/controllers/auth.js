@@ -94,3 +94,44 @@ exports.postSignup = async (req, res, next) => {
     console.log(error);
   }
 };
+
+exports.postForgot = async (req, res) => {
+  const validationErrors = [];
+  if (!validator.isEmail(req.body.email))
+    validationErrors.push({ msg: "Please enter a valid email address" });
+  if (!validator.isAlpha(req.body.lname))
+    validationErrors.push({
+      msg: "Last name should contain letters only",
+    });
+  if (!validator.isAfter(req.body.dob, { comparisonDate: "1910-01-01" }))
+    validationErrors.push({
+      msg: "Date of birth must be after 1/1/1910",
+    });
+  if (!validator.isBefore(req.body.dob))
+    validationErrors.push({
+      msg: "Date of birth must be today or before today",
+    });
+
+  if (validationErrors.length) {
+    return res.status(400).json(validationErrors);
+  }
+  req.body.email = validator.normalizeEmail(req.body.email, {
+    gmail_remove_dots: false,
+  });
+
+  try {
+    const existingUser = await Account.findOne(
+      { email: req.body.email } && { lname: req.body.lname.toLowerCase() } && {
+          dob: req.body.dob,
+        }
+    );
+    if (existingUser) {
+      return res
+        .status(200)
+        .json(`Your username is '${existingUser.userName}'`);
+    }
+    res.status(400).json("An Account does not exist with given information");
+  } catch (error) {
+    console.log(error);
+  }
+};

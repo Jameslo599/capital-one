@@ -136,10 +136,10 @@ li {
 }
 .header-support {
   @include flexContainer(row, space-evenly, center);
+  cursor: pointer;
 
   button:first-child {
-    padding-right: 1rem;
-    border-right: solid 1px #c9ced2;
+    //padding-right: 1rem;
   }
   button:last-child {
     padding-left: 1rem;
@@ -153,6 +153,15 @@ li {
   span {
     font-size: 1rem;
   }
+  .help-button {
+    border-right: 1px solid #68768075;
+    button {
+      padding: 0 0.5rem;
+      @include md {
+        padding: 0 1rem;
+      }
+    }
+  }
 
   .chat-icon {
     @include lg {
@@ -160,6 +169,11 @@ li {
     }
   }
   .profile {
+    padding: 0;
+    padding-left: 0.5rem;
+    @include md {
+      padding-left: 1rem;
+    }
     img {
       width: 2rem;
       @include lg {
@@ -779,6 +793,29 @@ li {
   height: 100vh;
   .header {
     border-width: 1px;
+    .header-support {
+      border-bottom: 0.5px solid #bdbdbd00;
+      &:hover {
+        border-bottom: 0.5px solid #bdbdbd;
+      }
+      svg {
+        display: none;
+      }
+      img {
+        width: 2rem;
+        @include lg {
+          width: 2.5rem;
+        }
+      }
+      button:first-child {
+        border: 0;
+        padding: 0;
+      }
+      span {
+        font-weight: 300;
+        padding: 0 0.5rem;
+      }
+    }
     .logo {
       width: 6rem;
       @include lg {
@@ -1058,7 +1095,7 @@ li {
     }
     span {
       font-weight: 300;
-      padding-left: 0.5rem;
+      padding: 0 0.5rem;
     }
   }
   .section-container {
@@ -1119,4 +1156,8 @@ li {
   @include md {
     height: auto;
   }
+}
+//Link tags
+.link {
+  display: contents;
 }

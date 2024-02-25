@@ -1,7 +1,7 @@
 import React from "react";
-import macy from "../images/macys_legacy.webp";
-import priceline from "../images/priceline.webp";
-import adidas from "../images/adidas.webp";
+import macy from "../../images/macys_legacy.webp";
+import priceline from "../../images/priceline.webp";
+import adidas from "../../images/adidas.webp";
 
 function ShoppingTileView() {
   return (

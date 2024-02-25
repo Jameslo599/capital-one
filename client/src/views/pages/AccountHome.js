@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
-import "../styles/reset.scss";
-import "../styles/App.scss";
-import MyHeaderView from "./MyHeaderView";
-import MyBannerView from "./MyBannerView";
-import AccountTileView from "./AccountTileView";
-import ExploreTileView from "./ExploreTileView";
-import TransactTileView from "./TransactTileView";
-import CreditTileView from "./CreditTileView";
-import KhanTileView from "./KhanTileView";
-import ShoppingTileView from "./ShoppingTileView";
-import MapTileView from "./MapTileView";
-import MyFooterView from "./MyFooterView";
 import { useParams, useNavigate } from "react-router-dom";
-import CircleAnim2 from "../images/icons/circle-anim-2";
+import MyHeaderView from "../components/MyHeaderView";
+import MyBannerView from "../components/MyBannerView";
+import AccountTileView from "../components/AccountTileView";
+import ExploreTileView from "../components/ExploreTileView";
+import TransactTileView from "../components/TransactTileView";
+import CreditTileView from "../components/CreditTileView";
+import KhanTileView from "../components/KhanTileView";
+import ShoppingTileView from "../components/ShoppingTileView";
+import MapTileView from "../components/MapTileView";
+import MyFooterView from "../components/MyFooterView";
+import CircleAnim2 from "../../images/icons/circle-anim-2";
+import HeaderSupport from "../primatives/HeaderSupport";
+import HelpButton from "../primatives/HelpButton";
 
 function Home() {
   const [backendData, setBackendData] = useState(null);
@@ -51,7 +51,16 @@ function Home() {
         </div>
       ) : (
         <div className="App">
-          <MyHeaderView />
+          <MyHeaderView
+            headerSupport={
+              <HeaderSupport
+                helpButton={<HelpButton />}
+                signText={""}
+                link={""}
+              />
+            }
+            logoEnd={0}
+          />
           <MyBannerView user={backendData.fname} />
           <section className="tile-layout">
             <div className="widgets-1">

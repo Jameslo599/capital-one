@@ -1,4 +1,4 @@
-import CircleAnim2 from "../images/icons/circle-anim-2";
+import CircleAnim2 from "../../images/icons/circle-anim-2";
 
 function Loading() {
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import khan from "../images/money-swirl.avif";
+import khan from "../../images/money-swirl.avif";
 
 function KhanTileView() {
   return (

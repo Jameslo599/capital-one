@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Home from "./views/AccountHome";
-import Login from "./views/Login";
-import NotFound from "./views/404";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Forgot from "./views/Forgot";
-import SignUp from "./views/SignUp";
+import Home from "./views/pages/AccountHome";
+import Login from "./views/pages/Login";
+import NotFound from "./views/pages/404";
+import Forgot from "./views/pages/Forgot";
+import SignUp from "./views/pages/SignUp";
 
 const router = createBrowserRouter([
   {

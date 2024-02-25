@@ -1,5 +1,5 @@
 import React from "react";
-import credit from "../images/credit-score.png";
+import credit from "../../images/credit-score.png";
 
 function CreditTileView() {
   return (
