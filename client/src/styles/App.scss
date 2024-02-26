@@ -134,61 +134,93 @@ li {
     }
   }
 }
-.header-support {
-  @include flexContainer(row, space-evenly, center);
-  cursor: pointer;
-
-  button:first-child {
-    //padding-right: 1rem;
-  }
-  button:last-child {
-    padding-left: 1rem;
-  }
-  button {
+.support-container {
+  position: relative;
+  .header-support {
     @include flexContainer(row, space-evenly, center);
-    * {
-      margin: 0.125rem;
-    }
-  }
-  span {
-    font-size: 1rem;
-  }
-  .help-button {
-    border-right: 1px solid #68768075;
-    button {
-      padding: 0 0.5rem;
-      @include md {
-        padding: 0 1rem;
-      }
-    }
-  }
+    cursor: pointer;
 
-  .chat-icon {
-    @include lg {
-      width: 1.5rem;
-    }
-  }
-  .profile {
-    padding: 0;
-    padding-left: 0.5rem;
-    @include md {
+    button:last-child {
       padding-left: 1rem;
     }
-    img {
-      width: 2rem;
-      @include lg {
-        width: 2.5rem;
+    button {
+      @include flexContainer(row, space-evenly, center);
+      * {
+        margin: 0.125rem;
       }
     }
-    .arrow {
-      width: 1rem;
+    span {
+      font-size: 1rem;
+    }
+    .help-button {
+      border-right: 1px solid #68768075;
+      button {
+        padding: 0 0.5rem;
+        @include md {
+          padding: 0 1rem;
+        }
+      }
+    }
+
+    .chat-icon {
+      @include lg {
+        width: 1.5rem;
+      }
+    }
+    .profile {
+      padding: 0;
+      padding-left: 0.5rem;
+      @include md {
+        padding-left: 1rem;
+      }
+      img {
+        width: 2rem;
+        @include lg {
+          width: 2.5rem;
+        }
+      }
+      .arrow {
+        width: 1rem;
+      }
+    }
+
+    .supp-text {
+      display: none;
+
+      @include lg {
+        display: block;
+      }
     }
   }
-  .supp-text {
-    display: none;
-
+  .drop-down {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3019607843);
+    position: absolute;
+    top: 40px;
+    right: 0px;
+    background-color: #fff;
+    width: 240px;
+    max-width: 1170px;
     @include lg {
-      display: block;
+      top: 50px;
+      width: 300px;
+    }
+    li {
+      position: relative;
+      font-size: 0.875rem;
+      padding: 6px 12px;
+      border-top: 0;
+      &:not(:last-child) {
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          right: 50%;
+          transform: translateX(50%);
+          height: 0.25px;
+          width: 94%;
+          background-color: #cfcccf;
+        }
+      }
     }
   }
 }

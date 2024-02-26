@@ -33,7 +33,7 @@ function Home() {
     };
 
     personalize();
-  });
+  }, [navigate, params.username]);
 
   return (
     <div>
@@ -61,7 +61,11 @@ function Home() {
             }
             logoEnd={0}
           />
-          <MyBannerView user={backendData.fname} />
+          <MyBannerView
+            user={
+              backendData.fname[0].toUpperCase() + backendData.fname.slice(1)
+            }
+          />
           <section className="tile-layout">
             <div className="widgets-1">
               <AccountTileView balance={backendData.balance} />
