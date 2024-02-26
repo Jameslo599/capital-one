@@ -1,84 +1,20 @@
-import { useState } from "react";
-import { ToastContainer, toast, Bounce } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MyHeaderView from "../components/MyHeaderView";
 import HeaderSupport from "../primatives/HeaderSupport";
 import Loading from "../components/Loading";
 import forgot from "../../images/forgot.png";
 import PreLoginFooter from "../components/PreLoginFooter";
+import useFormData from "../../hooks/useFormState";
+import useFormSubmit from "../../hooks/useFormSubmit";
 
 function Forgot() {
-  const [formData, setFormData] = useState({
+  const { formData, handleChange } = useFormData({
     email: "",
     lname: "",
     dob: "",
   });
-  const [isLoading, setIsLoading] = useState(false);
-
-  const notifyError = (message) =>
-    toast.error(message, {
-      position: "top-center",
-      autoClose: false,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-      transition: Bounce,
-    });
-  const notifyInfo = (message) =>
-    toast.info(message, {
-      position: "top-center",
-      autoClose: false,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-      transition: Bounce,
-    });
-  const dismissAll = () => toast.dismiss();
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    dismissAll();
-    setIsLoading(true);
-    try {
-      const response = await fetch("/api/forgot", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      const confirmation = await response.json();
-      const status = await response.status;
-      if (status === 200) {
-        return notifyInfo(confirmation);
-      }
-      if (typeof confirmation !== "string") {
-        for (const error of confirmation) {
-          notifyError(`${error.msg}`);
-        }
-        return;
-      }
-      notifyError(confirmation);
-    } catch (e) {
-      notifyError(e);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const { isLoading, handleSubmit } = useFormSubmit(formData, "/api/forgot");
 
   return (
     <div className="login forgot">

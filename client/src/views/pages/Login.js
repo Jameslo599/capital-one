@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { ToastContainer, toast, Bounce } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../../styles/reset.scss";
 import "../../styles/App.scss";
@@ -9,85 +7,16 @@ import MyHeaderView from "../components/MyHeaderView";
 import PreLoginFooter from "../components/PreLoginFooter";
 import logo from "../../images/logo.svg";
 import Loading from "../components/Loading";
+import useFormData from "../../hooks/useFormState";
+import useLogin from "../../hooks/useLogin";
 
 function Login() {
-  const [formData, setFormData] = useState({
+  const { formData, handleChange, handleBox } = useFormData({
     userName: "",
     password: "",
     remember: false,
   });
-  const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
-
-  const notifyError = (message) =>
-    toast.error(message, {
-      position: "top-center",
-      autoClose: false,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-      transition: Bounce,
-    });
-  const notifySuccess = () =>
-    toast.success("Success! Logging in...", {
-      position: "top-center",
-      autoClose: false,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-      transition: Bounce,
-    });
-  const dismissAll = () => toast.dismiss();
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
-
-  const handleBox = () => {
-    const value = formData.remember === false ? true : false;
-    setFormData((prevState) => ({
-      ...prevState,
-      remember: value,
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    dismissAll();
-    setIsLoading(true);
-    console.log(formData);
-    try {
-      const response = await fetch("/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      const confirmation = await response.json();
-      const status = await response.status;
-      if (status === 200) {
-        notifySuccess();
-        navigate(`/home/${formData.userName.toLowerCase()}`);
-      }
-      notifyError(confirmation.msg);
-    } catch (e) {
-      notifyError(e);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const { isLoading, handleSubmit } = useLogin(formData, "/api/login");
 
   return (
     <div className="login">

@@ -57,6 +57,14 @@ exports.postSignup = async (req, res, next) => {
     validationErrors.push({
       msg: "Date of birth must be after 1/1/1910",
     });
+  if (!validator.isBefore(req.body.dob))
+    validationErrors.push({
+      msg: "Date of birth must be today or before today",
+    });
+  if (!validator.isNumeric(req.body.balance))
+    validationErrors.push({
+      msg: "Balance must only contain numbers",
+    });
 
   if (validationErrors.length) {
     return res.status(400).json(validationErrors);
@@ -69,8 +77,8 @@ exports.postSignup = async (req, res, next) => {
     userName: req.body.userName,
     password: req.body.password,
     email: req.body.email,
-    fname: req.body.fname,
-    lname: req.body.lname,
+    fname: req.body.fname.toLowerCase(),
+    lname: req.body.lname.toLowerCase(),
     dob: req.body.dob,
     balance: req.body.balance,
   });
@@ -120,11 +128,12 @@ exports.postForgot = async (req, res) => {
   });
 
   try {
-    const existingUser = await Account.findOne(
-      { email: req.body.email } && { lname: req.body.lname.toLowerCase() } && {
-          dob: req.body.dob,
-        }
-    );
+    const query = Account.where({
+      email: req.body.email,
+      lname: req.body.lname.toLowerCase(),
+      dob: req.body.dob,
+    });
+    const existingUser = await query.findOne();
     if (existingUser) {
       return res
         .status(200)
