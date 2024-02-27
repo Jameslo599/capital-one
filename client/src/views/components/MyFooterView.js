@@ -1,9 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import fdic from "../../images/fdic.jpg";
 import house from "../../images/house.jpg";
 import ShowToHide from "../../images/icons/show-to-hide";
 
 function MyFooterView() {
+  const [open, setOpen] = useState({
+    firstUl: false,
+    secondUl: false,
+  });
+
+  const handleChange = (e) => {
+    const name = e.target.name;
+    setOpen((prevState) => ({
+      ...prevState,
+      [name]: open[name] === false ? true : false,
+    }));
+    hideExcess(name);
+  };
+
+  const hideExcess = (name) => {
+    document.getElementById(name).style.overflow = "hidden";
+  };
+
+  const handleEnd = (e) => {
+    if (e.target.className === "collapse")
+      return (e.target.style.overflow = "visible");
+  };
+
   return (
     <div>
       <footer className="footer">
@@ -19,8 +42,15 @@ function MyFooterView() {
               </a>
             </li>
             <li className="sublist">
-              <ShowToHide text="ABOUT US" />
-              <ul>
+              <div onClick={handleChange}>
+                <ShowToHide text="ABOUT US" name="firstUl" />
+              </div>
+
+              <ul
+                id="firstUl"
+                className={open.firstUl ? "collapse" : undefined}
+                onTransitionEnd={handleEnd}
+              >
                 <li>
                   <a
                     href="https://www.capitalone.com/about/"
@@ -61,8 +91,14 @@ function MyFooterView() {
             </li>
             <li>CAREERS</li>
             <li className="sublist">
-              <ShowToHide text="LEGAL" />
-              <ul>
+              <div onClick={handleChange}>
+                <ShowToHide text="LEGAL" name="secondUl" />
+              </div>
+              <ul
+                id="secondUl"
+                className={open.secondUl ? "collapse" : undefined}
+                onTransitionEnd={handleEnd}
+              >
                 <li>
                   <a
                     href="https://www.capitalone.com/military/"

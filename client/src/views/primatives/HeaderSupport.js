@@ -26,8 +26,8 @@ function HeaderSupport({ helpButton = "", signText, link = "/" }) {
           </div>
         )}
       </div>
-      {dropDown && (
-        <div className="drop-down">
+      {params.username && (
+        <div className={`drop-down ${dropDown ? "show" : ""}`}>
           <ul>
             <li>Profile</li>
             <li>Security</li>

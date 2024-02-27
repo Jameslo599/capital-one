@@ -17,7 +17,7 @@ function ShowToHide(props) {
   }
 
   return (
-    <button onClick={handleClick}>
+    <button onClick={handleClick} name={props.name}>
       <svg
         className="expand"
         height={height}
