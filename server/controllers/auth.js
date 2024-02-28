@@ -135,9 +135,7 @@ exports.postForgot = async (req, res) => {
     });
     const existingUser = await query.findOne();
     if (existingUser) {
-      return res
-        .status(200)
-        .json(`Your username is '${existingUser.userName}'`);
+      return res.status(200).json(existingUser.userName);
     }
     res.status(400).json("An Account does not exist with given information");
   } catch (error) {

@@ -6,6 +6,7 @@ import Login from "./views/pages/Login";
 import NotFound from "./views/pages/404";
 import Forgot from "./views/pages/Forgot";
 import SignUp from "./views/pages/SignUp";
+import ResetPassword from "./views/pages/ResetPassword";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/forgot",
     element: <Forgot />,
+  },
+  {
+    path: "/reset",
+    element: <ResetPassword />,
   },
   {
     path: "/signup",

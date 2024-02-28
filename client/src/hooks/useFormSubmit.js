@@ -16,6 +16,7 @@ function useFormSubmit(data, param) {
       theme: "colored",
       transition: Bounce,
     });
+
   const notifyInfo = (message) =>
     toast.info(message, {
       position: "top-center",
@@ -28,6 +29,7 @@ function useFormSubmit(data, param) {
       theme: "colored",
       transition: Bounce,
     });
+
   const dismissAll = () => toast.dismiss();
 
   const handleSubmit = async (e) => {
@@ -35,7 +37,6 @@ function useFormSubmit(data, param) {
     dismissAll();
     setIsLoading(true);
     try {
-      console.log(data);
       const response = await fetch(`${param}`, {
         method: "POST",
         headers: {
@@ -46,13 +47,36 @@ function useFormSubmit(data, param) {
       const confirmation = await response.json();
       const status = await response.status;
       if (status === 200) {
-        return notifyInfo(confirmation);
+        return sendMail([data.email, confirmation]);
       }
       if (typeof confirmation !== "string") {
         for (const error of confirmation) {
           notifyError(`${error.msg}`);
         }
         return;
+      }
+      notifyError(confirmation);
+    } catch (e) {
+      notifyError(e);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const sendMail = async (data) => {
+    dismissAll();
+    try {
+      const response = await fetch("/api/email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      const confirmation = await response.json();
+      const status = await response.status;
+      if (status === 200) {
+        return notifyInfo(confirmation);
       }
       notifyError(confirmation);
     } catch (e) {

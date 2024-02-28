@@ -686,6 +686,11 @@ li {
 }
 
 //Footer
+.section-container + div,
+.not-found + div {
+  background-color: #f4f4f4;
+  border-top: 1px solid #c9ced2;
+}
 .footer {
   padding: 24px 12px 18px;
   position: relative;
@@ -1176,7 +1181,7 @@ li {
     }
   }
   .section-container {
-    padding: 24px;
+    padding: 24px 24px 72px;
     @include md {
       height: 100%;
     }
@@ -1237,4 +1242,8 @@ li {
 //Link tags
 .link {
   display: contents;
+}
+//Forgot Password
+.forgot-password {
+  margin: 8px 0 0;
 }

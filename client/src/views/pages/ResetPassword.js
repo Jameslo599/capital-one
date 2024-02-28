@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MyHeaderView from "../components/MyHeaderView";
@@ -9,16 +8,13 @@ import PreLoginFooter from "../components/PreLoginFooter";
 import useFormData from "../../hooks/useFormState";
 import useFormSubmit from "../../hooks/useFormSubmit";
 
-function Forgot() {
+function ResetPassword() {
   const { formData, handleChange } = useFormData({
     email: "",
     lname: "",
     dob: "",
   });
-  const { isLoading, handleSubmit, result } = useFormSubmit(
-    formData,
-    "/api/forgot"
-  );
+  const { isLoading, handleSubmit } = useFormSubmit(formData, "/api/forgot");
 
   return (
     <div className="login forgot">
@@ -33,7 +29,7 @@ function Forgot() {
             <div>
               <img src={forgot} alt="404 traffic cone"></img>
             </div>
-            <h1>First, let's find your username</h1>
+            <h1>Reset your password</h1>
             <p>
               This information will help us locate your Capital One online
               account(s). If needed, you can update your password after account
@@ -83,9 +79,6 @@ function Forgot() {
                 <button type="submit">Find Me</button>
               </div>
             </form>
-            <div className="forgot forgot-password">
-              <Link to={"/reset"}>Reset Password</Link>
-            </div>
           </div>
         </section>
       </div>
@@ -94,4 +87,4 @@ function Forgot() {
   );
 }
 
-export default Forgot;
+export default ResetPassword;
