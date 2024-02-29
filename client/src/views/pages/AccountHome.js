@@ -26,6 +26,9 @@ function Home() {
         const response = await fetch(`/api/user/${params.username}`);
         const data = await response.json();
         if (!data) return navigate("/");
+        // if (data.userName !== params.username)
+        //   return navigate(`/home/${data.userName}`);
+        console.log(data);
         setBackendData(data);
       } catch (e) {
         setError(e);

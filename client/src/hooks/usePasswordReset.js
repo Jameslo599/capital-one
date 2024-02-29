@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { toast, Bounce } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
-function useFormSubmit(data, param) {
+function usePasswordReset(data, param) {
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const notifyError = (message) =>
     toast.error(message, {
@@ -38,7 +40,7 @@ function useFormSubmit(data, param) {
     setIsLoading(true);
     try {
       const response = await fetch(`${param}`, {
-        method: "POST",
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
@@ -47,7 +49,8 @@ function useFormSubmit(data, param) {
       const confirmation = await response.json();
       const status = await response.status;
       if (status === 200) {
-        return sendMail([data.email, confirmation]);
+        notifySuccess(confirmation);
+        return navigate("/");
       }
       if (typeof confirmation !== "string") {
         for (const error of confirmation) {
@@ -63,30 +66,7 @@ function useFormSubmit(data, param) {
     }
   };
 
-  const sendMail = async (data) => {
-    dismissAll();
-    try {
-      const response = await fetch("/api/email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      const confirmation = await response.json();
-      const status = await response.status;
-      if (status === 200) {
-        return notifySuccess(confirmation);
-      }
-      notifyError(confirmation);
-    } catch (e) {
-      notifyError(e);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   return { isLoading, handleSubmit };
 }
 
-export default useFormSubmit;
+export default usePasswordReset;

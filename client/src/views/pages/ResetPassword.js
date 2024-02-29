@@ -1,28 +1,27 @@
+import { useParams } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MyHeaderView from "../components/MyHeaderView";
-import HeaderSupport from "../primatives/HeaderSupport";
 import Loading from "../components/Loading";
-import forgot from "../../images/forgot.png";
+import forgot from "../../images/lock.svg";
 import PreLoginFooter from "../components/PreLoginFooter";
 import useFormData from "../../hooks/useFormState";
-import useFormSubmit from "../../hooks/useFormSubmit";
+import usePasswordReset from "../../hooks/usePasswordReset";
 
 function ResetPassword() {
+  const params = useParams();
   const { formData, handleChange } = useFormData({
-    email: "",
-    lname: "",
-    dob: "",
+    password: "",
+    confirm: "",
   });
-  const { isLoading, handleSubmit } = useFormSubmit(formData, "/api/forgot");
-
+  const { isLoading, handleSubmit } = usePasswordReset(
+    formData,
+    `/api/reset/${params.username}`
+  );
   return (
     <div className="login forgot">
       <ToastContainer />
-      <MyHeaderView
-        logoEnd="/"
-        headerSupport={<HeaderSupport helpButton={""} signText={"Sign In"} />}
-      />
+      <MyHeaderView logoEnd="/" />
       <div className="section-container">
         <section className="not-found">
           <div className="message-box message">
@@ -31,9 +30,9 @@ function ResetPassword() {
             </div>
             <h1>Reset your password</h1>
             <p>
-              This information will help us locate your Capital One online
-              account(s). If needed, you can update your password after account
-              lookup.
+              This page will only be available for a short period of time.{" "}
+              <br />
+              Please update your password as soon as possible.
             </p>
           </div>
         </section>
@@ -41,42 +40,30 @@ function ResetPassword() {
           <div className="message-box">
             <form onSubmit={handleSubmit}>
               <div className="form-text">
-                <label htmlFor="email">Email</label>
+                <label htmlFor="password">New Password</label>
                 <input
-                  type="text"
-                  name="email"
-                  id="email"
-                  value={formData.email}
+                  type="password"
+                  name="password"
+                  id="password"
+                  value={formData.password}
                   onChange={handleChange}
                   required
                 ></input>
               </div>
               <div className="form-text">
-                <label htmlFor="lname">Last Name</label>
+                <label htmlFor="confirm">Confirm Password</label>
                 <input
-                  type="text"
-                  name="lname"
-                  id="lname"
-                  value={formData.lname}
-                  onChange={handleChange}
-                  required
-                ></input>
-              </div>
-              <div className="form-text">
-                <label htmlFor="dob">Date of Birth</label>
-                <input
-                  type="date"
-                  name="dob"
-                  id="dob"
-                  max="9999-12-31"
-                  value={formData.dob}
+                  type="password"
+                  name="confirm"
+                  id="confirm"
+                  value={formData.confirm}
                   onChange={handleChange}
                   required
                 ></input>
               </div>
               <div className="login-button">
                 {isLoading && <Loading />}
-                <button type="submit">Find Me</button>
+                <button type="submit">Change Password</button>
               </div>
             </form>
           </div>

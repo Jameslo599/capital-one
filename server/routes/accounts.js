@@ -8,9 +8,10 @@ const { ensureAuth } = require("../middleware/auth");
 router.get("/user/:id", ensureAuth, accountsController.getAccount);
 router.post("/login", authController.postLogin);
 router.post("/create", authController.postSignup);
-router.post("/forgot", authController.postForgot);
 
-//Login management
-router.post("/email", emailController.emailUsername);
+//Account user/password management
+router.post("/forgot", authController.postForgot);
+router.post("/email", emailController.postEmailUsername);
+router.put("/reset/:username", authController.putResetPassword);
 
 module.exports = router;

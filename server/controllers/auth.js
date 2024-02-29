@@ -142,3 +142,38 @@ exports.postForgot = async (req, res) => {
     console.log(error);
   }
 };
+
+exports.putResetPassword = async (req, res) => {
+  const validationErrors = [];
+  if (!validator.isStrongPassword(req.body.password))
+    validationErrors.push({
+      msg: "Password must contain at least 8 characters and include at least 1 lowercase, uppercase, number and symbol",
+    });
+  if (!validator.equals(req.body.password, req.body.confirm))
+    validationErrors.push({
+      msg: "Passwords do not match",
+    });
+
+  if (validationErrors.length) {
+    return res.status(400).json(validationErrors);
+  }
+
+  try {
+    const query = Account.where({
+      userName: req.params.username.toLowerCase(),
+    });
+    const existingUser = await query.findOne();
+    if ((existingUser.password = req.body.password))
+      return res
+        .status(400)
+        .json("New password cannot be identical to the last password");
+    existingUser.password = req.body.password;
+    if (existingUser) {
+      existingUser.save();
+      return res.status(200).json("Your password has been updated!");
+    }
+    res.status(400).json("An Account does not exist with given information");
+  } catch (error) {
+    console.log(error);
+  }
+};

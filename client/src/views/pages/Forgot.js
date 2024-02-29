@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MyHeaderView from "../components/MyHeaderView";
@@ -15,10 +14,7 @@ function Forgot() {
     lname: "",
     dob: "",
   });
-  const { isLoading, handleSubmit, result } = useFormSubmit(
-    formData,
-    "/api/forgot"
-  );
+  const { isLoading, handleSubmit } = useFormSubmit(formData, "/api/forgot");
 
   return (
     <div className="login forgot">
@@ -83,9 +79,6 @@ function Forgot() {
                 <button type="submit">Find Me</button>
               </div>
             </form>
-            <div className="forgot forgot-password">
-              <Link to={"/reset"}>Reset Password</Link>
-            </div>
           </div>
         </section>
       </div>

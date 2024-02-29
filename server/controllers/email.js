@@ -1,7 +1,7 @@
 const nodemailer = require("nodemailer");
 
 module.exports = {
-  emailUsername: async (req, res) => {
+  postEmailUsername: async (req, res) => {
     try {
       const transporter = nodemailer.createTransport({
         service: "Gmail",
