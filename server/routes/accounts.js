@@ -12,6 +12,6 @@ router.post("/create", authController.postSignup);
 //Account user/password management
 router.post("/forgot", authController.postForgot);
 router.post("/email", emailController.postEmailUsername);
-router.put("/reset/:username", authController.putResetPassword);
+router.put("/reset/:username/:today-:hash", authController.putResetPassword);
 
 module.exports = router;

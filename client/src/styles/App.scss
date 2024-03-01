@@ -853,6 +853,22 @@ li {
   .spinner-container {
     width: 5rem;
   }
+  .loading-text {
+    width: 300px;
+    line-height: 1.25rem;
+    text-align: center;
+    margin: 12px 0;
+  }
+  button {
+    @include button(#fff, transparent);
+    display: block;
+    max-width: 200px;
+    background-color: #255f82;
+    margin: 24px auto;
+    a {
+      color: #fff;
+    }
+  }
   h1 {
     font-size: 1.25rem;
     margin-top: 12px;
