@@ -7,6 +7,7 @@ const { ensureAuth } = require("../middleware/auth");
 
 router.get("/user/:id", ensureAuth, accountsController.getAccount);
 router.post("/login", authController.postLogin);
+router.delete("/session", authController.logout);
 router.post("/create", authController.postSignup);
 
 //Account user/password management

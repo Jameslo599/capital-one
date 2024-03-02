@@ -7,6 +7,8 @@ module.exports = {
         userName: req.params.id,
       });
       if (!account) return res.status(403).json(null);
+      if (account.userName !== req.user.userName)
+        return res.status(403).json(req.user);
       res.status(200).json(account);
     } catch (err) {
       console.log(err);

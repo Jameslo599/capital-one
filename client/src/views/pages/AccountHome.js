@@ -13,22 +13,24 @@ import MyFooterView from "../components/MyFooterView";
 import CircleAnim2 from "../../images/icons/circle-anim-2";
 import HeaderSupport from "../primatives/HeaderSupport";
 import HelpButton from "../primatives/HelpButton";
+import useSignOut from "../../hooks/useSignOut";
 
 function Home() {
   const [backendData, setBackendData] = useState(null);
   const [error, setError] = useState();
   const params = useParams();
   const navigate = useNavigate();
+  const { handleClick } = useSignOut();
 
   useEffect(() => {
     const personalize = async () => {
       try {
         const response = await fetch(`/api/user/${params.username}`);
         const data = await response.json();
+
         if (!data) return navigate("/");
-        // if (data.userName !== params.username)
-        //   return navigate(`/home/${data.userName}`);
-        console.log(data);
+        if (data.userName !== params.username)
+          return navigate(`/home/${data.userName}`);
         setBackendData(data);
       } catch (e) {
         setError(e);
@@ -60,6 +62,7 @@ function Home() {
                 helpButton={<HelpButton />}
                 signText={""}
                 link={""}
+                signOut={handleClick}
               />
             }
             logoEnd={0}

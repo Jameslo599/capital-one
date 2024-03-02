@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import ISorting from "../../images/icons/i-sorting";
 
-function HeaderSupport({ helpButton = "", signText, link = "/" }) {
+function HeaderSupport({
+  helpButton = "",
+  signText,
+  link = "/",
+  signOut = "",
+}) {
   const [dropDown, setDropDown] = useState(false);
   const params = useParams();
 
@@ -29,9 +34,17 @@ function HeaderSupport({ helpButton = "", signText, link = "/" }) {
       {params.username && (
         <div className={`drop-down ${dropDown ? "show" : ""}`}>
           <ul>
-            <li>Profile</li>
-            <li>Security</li>
-            <li>Sign out</li>
+            <li>
+              <button className="account-list">Profile</button>
+            </li>
+            <li>
+              <button className="account-list">Security</button>
+            </li>
+            <li>
+              <button className="account-list" onClick={signOut}>
+                Sign out
+              </button>
+            </li>
           </ul>
         </div>
       )}

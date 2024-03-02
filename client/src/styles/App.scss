@@ -225,6 +225,17 @@ li {
           background-color: #cfcccf;
         }
       }
+
+      .account-list {
+        text-align: left;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        &:hover {
+          color: #0a5783;
+        }
+      }
     }
   }
   .show {
