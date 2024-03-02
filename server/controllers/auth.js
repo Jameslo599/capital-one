@@ -30,20 +30,18 @@ exports.postLogin = (req, res, next) => {
 };
 
 exports.logout = (req, res) => {
+  res.clearCookie("connect.sid");
   req.logout((err) => {
     if (err) res.status(400).json("Error logging out");
-    res.status(200).json("User has logged out.");
+    req.session.destroy((err) => {
+      if (err)
+        res
+          .status(400)
+          .json("Error : Failed to destroy the session during logout.");
+      req.user = null;
+      res.status(200).json("User has logged out.").send();
+    });
   });
-  console.log(req.session);
-  //   req.session.destroy((err) => {
-  //     if (err)
-  //       res
-  //         .status(400)
-  //         .json("Error : Failed to destroy the session during logout.");
-  //     req.user = null;
-  //     //console.log(req.session);
-  //     //res.status(200).json("User has logged out.");
-  //   });
 };
 
 exports.postSignup = async (req, res, next) => {
