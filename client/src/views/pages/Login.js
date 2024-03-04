@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../../styles/reset.scss";
@@ -9,8 +9,24 @@ import logo from "../../images/logo.svg";
 import Loading from "../components/Loading";
 import useFormData from "../../hooks/useFormState";
 import useLogin from "../../hooks/useLogin";
+import { useEffect } from "react";
 
 function Login() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const logged = async () => {
+      try {
+        const response = await fetch("/api/getlogged?");
+        const data = await response.json();
+        console.log(data);
+        return data === false ? null : navigate(`/home/${data}`);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    logged();
+  }, [navigate]);
+
   const { formData, handleChange, handleBox } = useFormData({
     userName: "",
     password: "",

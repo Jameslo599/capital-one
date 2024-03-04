@@ -29,6 +29,14 @@ exports.postLogin = (req, res, next) => {
   })(req, res, next);
 };
 
+exports.getLogged = (req, res) => {
+  if (req.isAuthenticated()) {
+    return res.json(req.user.userName);
+  } else {
+    res.json(false);
+  }
+};
+
 exports.logout = (req, res) => {
   res.clearCookie("connect.sid");
   req.logout((err) => {
