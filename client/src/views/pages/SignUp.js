@@ -1,7 +1,7 @@
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import logo from "../../images/logo.svg";
-import HeaderSupport from "../primatives/HeaderSupport";
+import HeaderSupport from "../components/HeaderSupport";
 import Loading from "../components/Loading";
 import MyHeaderView from "../components/MyHeaderView";
 import MyFooterView from "../components/MyFooterView";

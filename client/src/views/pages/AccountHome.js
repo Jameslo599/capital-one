@@ -11,8 +11,8 @@ import ShoppingTileView from "../components/ShoppingTileView";
 import MapTileView from "../components/MapTileView";
 import MyFooterView from "../components/MyFooterView";
 import CircleAnim2 from "../../images/icons/circle-anim-2";
-import HeaderSupport from "../primatives/HeaderSupport";
-import HelpButton from "../primatives/HelpButton";
+import HeaderSupport from "../components/HeaderSupport";
+import HelpButton from "../components/HelpButton";
 import useSignOut from "../../hooks/useSignOut";
 
 function Home() {

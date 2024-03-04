@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import MyHeaderView from "../components/MyHeaderView";
 import MyFooterView from "../components/MyFooterView";
-import HeaderSupport from "../primatives/HeaderSupport";
+import HeaderSupport from "../components/HeaderSupport";
 import cone from "../../images/404.png";
 
 function NotFound() {

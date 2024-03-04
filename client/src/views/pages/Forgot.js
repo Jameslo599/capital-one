@@ -1,7 +1,7 @@
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MyHeaderView from "../components/MyHeaderView";
-import HeaderSupport from "../primatives/HeaderSupport";
+import HeaderSupport from "../components/HeaderSupport";
 import Loading from "../components/Loading";
 import forgot from "../../images/forgot.png";
 import PreLoginFooter from "../components/PreLoginFooter";
