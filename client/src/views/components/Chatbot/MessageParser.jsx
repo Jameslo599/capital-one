@@ -5,6 +5,9 @@ const MessageParser = ({ children, actions }) => {
     if (message.includes("hello")) {
       actions.handleHello();
     }
+    if (message.includes("number")) {
+      actions.handleAccountNumber();
+    }
   };
 
   return (

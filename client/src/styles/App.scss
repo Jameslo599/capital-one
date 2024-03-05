@@ -1278,28 +1278,34 @@ li {
 .modal {
   visibility: hidden;
   position: fixed;
-  //top: 60%;
   top: 100%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #f2f2f3;
   width: 100vw;
-  //border-radius: 4px;
+  height: 100vh;
   opacity: 0;
   transition: all 0.4s ease;
-  button:first-child {
+  > button:first-child {
     background-color: transparent;
     position: fixed;
     z-index: 1000;
     top: 1.25%;
     right: 2%;
   }
+  @include lg {
+    width: 398px;
+    height: 593px;
+    top: 100%;
+  }
 }
 .modal-active {
   visibility: visible;
   top: 50%;
   opacity: 1;
-  height: 100vh;
+  @include lg {
+    top: 40%;
+  }
 }
 .modal-overlay {
   visibility: hidden;
@@ -1324,6 +1330,12 @@ li {
   padding-top: 45px;
   .react-chatbot-kit-chat-inner-container {
     height: 100%;
+  }
+  @include lg {
+    height: 593px;
+    .react-chatbot-kit-chat-inner-container {
+      height: 100%;
+    }
   }
 }
 .react-chatbot-kit-chat-message-container {
@@ -1365,6 +1377,9 @@ li {
 //User Chat
 .react-chatbot-kit-chat-message-container {
   height: 90%;
+  @include lg {
+    height: 85%;
+  }
 }
 .react-chatbot-kit-user-chat-message {
   background-color: #0c74af;
@@ -1400,8 +1415,19 @@ li {
         box-shadow: 0 0 1px 1px #0d74af;
       }
     }
-    .react-chatbot-kit-chat-btn-send {
-      border-bottom-right-radius: 4px;
-    }
+  }
+  @include lg {
+    width: 100%;
+  }
+}
+//Widgets
+.chat-link {
+  width: fit-content;
+  background-color: #fff;
+  border: 2px solid #cecece;
+  margin-left: 52.5px;
+  a {
+    width: 100%;
+    cursor: pointer;
   }
 }
