@@ -25,6 +25,7 @@ function HelpButton() {
           config={config}
           messageParser={MessageParser}
           actionProvider={ActionProvider}
+          placeholderText="Type your message here"
         />
       </Modal>
     </div>

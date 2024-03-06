@@ -1,4 +1,5 @@
 import React from "react";
+import { createClientMessage } from "react-chatbot-kit";
 
 const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   const handleHello = () => {
@@ -7,24 +8,28 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     updateChatbotState(botMessage);
   };
 
-  const handleAccountNumber = () => {
+  const handleHelpList = (topic) => {
+    switch (topic) {
+      case "transferMoney":
+        topic = createClientMessage("How do I transfer money?");
+        break;
+      default:
+        topic = createClientMessage("Error, no topic selected!");
+    }
+
     const botMessage = createChatBotMessage(
-      "You can find your account number and routing number here:",
-      {
-        widget: "accountNumber",
-      }
+      "You can transfer money or set up a recurring transfer here:",
+      { widget: "transferLink" }
     );
     const botMessage2 = createChatBotMessage(
       "I can also help with other topics, such as:",
-      {
-        widget: "accountNumber",
-      }
+      { widget: "helpLinks" }
     );
 
-    updateChatbotState(botMessage, botMessage2);
+    updateChatbotState(topic, botMessage, botMessage2);
   };
 
-  //Update state
+  //Add messages
   const updateChatbotState = (...message) => {
     setState((prev) => ({
       ...prev,
@@ -36,7 +41,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     <div>
       {React.Children.map(children, (child) => {
         return React.cloneElement(child, {
-          actions: { handleHello, handleAccountNumber },
+          actions: { handleHello, handleHelpList },
         });
       })}
     </div>

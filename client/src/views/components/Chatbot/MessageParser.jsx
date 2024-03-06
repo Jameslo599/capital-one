@@ -2,11 +2,11 @@ import React from "react";
 
 const MessageParser = ({ children, actions }) => {
   const parse = (message) => {
-    if (message.includes("hello")) {
+    if (message.toLowerCase().includes("hello")) {
       actions.handleHello();
     }
-    if (message.includes("number")) {
-      actions.handleAccountNumber();
+    if (message.toLowerCase().includes("transfer money")) {
+      actions.handleHelpList("transferMoney");
     }
   };
 
@@ -15,7 +15,7 @@ const MessageParser = ({ children, actions }) => {
       {React.Children.map(children, (child) => {
         return React.cloneElement(child, {
           parse: parse,
-          actions: {},
+          actions,
         });
       })}
     </div>

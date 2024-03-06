@@ -1,6 +1,7 @@
-import { createChatBotMessage, createClientMessage } from "react-chatbot-kit";
+import { createChatBotMessage } from "react-chatbot-kit";
 import { format } from "date-fns";
-import AccountNumber from "./AccountNumber";
+import AccountOptions from "./AccountOptions";
+import LinkList from "./LinkList";
 
 const botName = "Eno";
 const date = format(new Date(), "MMM d, y 'at' p");
@@ -10,7 +11,7 @@ const config = {
     createChatBotMessage(`Hi there!`),
     createChatBotMessage(
       `I'm ${botName}, your Capital One assistant. I'm not a human, so I'm available 24/7. Ask me a question, or try one of these:`,
-      { withAvatar: true, widget: "accountNumber" }
+      { withAvatar: true, widget: "accountOptions" }
     ),
   ],
   botName: botName,
@@ -19,8 +20,44 @@ const config = {
   },
   widgets: [
     {
-      widgetName: "accountNumber",
-      widgetFunc: (props) => <AccountNumber {...props} />,
+      widgetName: "accountOptions",
+      widgetFunc: (props) => <AccountOptions {...props} />,
+    },
+    {
+      widgetName: "transferLink",
+      widgetFunc: (props) => <LinkList {...props} />,
+      props: {
+        options: [
+          {
+            text: "Transfer money",
+            url: "#",
+            id: 1,
+          },
+        ],
+      },
+    },
+    {
+      widgetName: "helpLinks",
+      widgetFunc: (props) => <LinkList {...props} />,
+      props: {
+        options: [
+          {
+            text: "What are my recent transactions?",
+            url: "#",
+            id: 1,
+          },
+          {
+            text: "What's my account number?",
+            url: "#",
+            id: 2,
+          },
+          {
+            text: "Can I see my account summary?",
+            url: "#",
+            id: 3,
+          },
+        ],
+      },
     },
   ],
 };

@@ -7,3 +7,4 @@ using finally in the try catch block to make a better ui experience.
 using usestate to render different conditions for the user to see.
 Practiced building requests and using res.status codes
 utilized react portals to implement modal with working z-index functionality.
+created a linked list for chatbot, learned onclick = {() => {}} pattern to pass arguments into event handlers
