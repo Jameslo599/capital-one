@@ -14,6 +14,12 @@ function HelpButton() {
     setOpen(false);
   };
 
+  const validateInput = () => {
+    const input = document.querySelector(".react-chatbot-kit-chat-input");
+    if (input.value === "") return false;
+    return true;
+  };
+
   return (
     <div className="help-button">
       <button onClick={() => setOpen(true)}>
@@ -26,6 +32,7 @@ function HelpButton() {
           messageParser={MessageParser}
           actionProvider={ActionProvider}
           placeholderText="Type your message here"
+          validator={validateInput}
         />
       </Modal>
     </div>

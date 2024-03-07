@@ -37,26 +37,70 @@ const config = {
       },
     },
     {
-      widgetName: "helpLinks",
+      widgetName: "postTransfer",
+      widgetFunc: (props) => <AccountOptions {...props} />,
+      props: {
+        keyword: "transfer",
+      },
+    },
+    {
+      widgetName: "accNumLink",
       widgetFunc: (props) => <LinkList {...props} />,
       props: {
         options: [
           {
-            text: "What are my recent transactions?",
+            text: "Account info",
             url: "#",
             id: 1,
           },
+        ],
+      },
+    },
+    {
+      widgetName: "postNum",
+      widgetFunc: (props) => <AccountOptions {...props} />,
+      props: {
+        keyword: "number",
+      },
+    },
+    {
+      widgetName: "summaryLink",
+      widgetFunc: (props) => <LinkList {...props} />,
+      props: {
+        options: [
           {
-            text: "What's my account number?",
+            text: "Account summary",
             url: "#",
-            id: 2,
-          },
-          {
-            text: "Can I see my account summary?",
-            url: "#",
-            id: 3,
+            id: 1,
           },
         ],
+      },
+    },
+    {
+      widgetName: "postSumm",
+      widgetFunc: (props) => <AccountOptions {...props} />,
+      props: {
+        keyword: "summary",
+      },
+    },
+    {
+      widgetName: "transactLink",
+      widgetFunc: (props) => <LinkList {...props} />,
+      props: {
+        options: [
+          {
+            text: "Recent transactions",
+            url: "#",
+            id: 1,
+          },
+        ],
+      },
+    },
+    {
+      widgetName: "postTransact",
+      widgetFunc: (props) => <AccountOptions {...props} />,
+      props: {
+        keyword: "transactions",
       },
     },
   ],
