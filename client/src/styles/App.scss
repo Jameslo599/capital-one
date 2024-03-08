@@ -124,8 +124,12 @@ li {
     @include flexContainer(row, space-between, center);
     max-width: 1170px;
     margin: 0 auto;
-
+    .nav-arrow {
+      padding: 6px;
+      cursor: pointer;
+    }
     .logo {
+      height: 100%;
       width: 5rem;
       vertical-align: middle;
       @include lg {
@@ -1446,4 +1450,165 @@ li {
 }
 .option-button-container {
   display: flex;
+}
+
+//Bank Page
+.bank-hero {
+  @include flexContainer(column, center, center);
+  max-width: 576px;
+  width: 100%;
+  padding: 24px 16px;
+  margin: 0 auto;
+  min-height: 256px;
+  background-color: #0d4969;
+  color: #fff;
+  button {
+    @include button(#fff, #fff);
+    margin: 0;
+    margin-top: 6px;
+  }
+  .bank-title {
+    @include flexContainer(column, space-evenly, center);
+    h1 {
+      font-size: 2rem;
+      padding-bottom: 6px;
+      font-weight: 300;
+    }
+    span {
+      font-size: 0.75rem;
+      padding: 3px 0;
+    }
+    div {
+      @include flexContainer(row, center, center);
+      height: 100%;
+      padding: 3px 0;
+      span {
+        padding: 0 3px;
+      }
+    }
+  }
+  .hero-balance {
+    padding: 24px 0 12px;
+    text-align: center;
+    > span:first-child {
+      display: block;
+      font-size: 0.75rem;
+      margin: 18px 0;
+      span {
+        font-size: 0.75rem;
+        font-weight: 400;
+      }
+    }
+    > div {
+      font-size: 4rem;
+      font-weight: 300;
+      margin: 12px 0 6px;
+      line-height: 1.5rem;
+      span {
+        font-size: 2rem;
+        vertical-align: super;
+      }
+    }
+    > span:last-child {
+      font-size: 1.5rem;
+      font-weight: 300;
+    }
+  }
+}
+.service-strip {
+  @include lg-shadow(0.25px);
+  background-color: #fff;
+  border-radius: 4px;
+  margin-top: 24px;
+  @include flexContainer(row, space-evenly, center);
+  > div {
+    @include flexContainer(column, center, center);
+    padding: 12px 0;
+    span {
+      margin-top: 6px;
+      font-weight: 500;
+      color: #0d74af;
+    }
+  }
+}
+.upcoming-transactions {
+  margin-bottom: 18px;
+  .upcoming-history {
+    @include flexContainer(row, center, center);
+    margin: 0 auto;
+    max-width: 1100px;
+    border: dashed 2px #c9ced2;
+    border-radius: 6px;
+    padding: 24px;
+    p {
+      font-size: 1.25rem;
+      color: #0d74af;
+      line-height: 1.75rem;
+    }
+  }
+}
+.past-transactions,
+.upcoming-transactions {
+  padding-top: 24px;
+  h2 {
+    font-size: 1.25rem;
+  }
+  .past-header {
+    @include flexContainer(row, flex-start, center);
+    h2 {
+      margin: 18px 6px;
+    }
+  }
+  .transaction-search {
+    @include flexContainer(row, space-between, center);
+    div {
+      @include lg-shadow(0.25px);
+      background-color: #fff;
+      height: 48px;
+      border: none;
+      border-radius: 4px;
+      display: flex;
+      svg {
+        margin-left: 12px;
+      }
+      input {
+        width: 100%;
+        border: none;
+        font-size: 1rem;
+        padding: 0 48px 0 16px;
+        border-radius: 4px;
+      }
+    }
+
+    button {
+      @include lg-shadow(0.25px);
+      height: 48px;
+      width: 85px;
+      border: 2px solid #fff;
+      border-radius: 4px;
+      margin-left: 18px;
+      color: #0d74af;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      svg {
+        margin-right: 6px;
+      }
+    }
+  }
+  .transaction-history {
+    @include lg-shadow(1px);
+    @include flexContainer(column, center, center);
+    height: 88px;
+    background-color: #fff;
+    border-radius: 4px;
+    margin-top: 18px;
+    font-size: 1.125rem;
+  }
+  .transactions-disclaimer {
+    font-size: 0.75rem;
+    line-height: 1.25rem;
+    padding: 36px 24px 12px;
+  }
 }

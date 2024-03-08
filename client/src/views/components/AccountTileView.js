@@ -1,6 +1,10 @@
 import React from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 function AccountTileView({ balance }) {
+  const navigate = useNavigate();
+  const params = useParams();
+
   return (
     <div>
       <div className="account-tile">
@@ -16,7 +20,14 @@ function AccountTileView({ balance }) {
             </div>
             <span>AVAILABLE BALANCE</span>
           </div>
-          <button className="account-button">View Account</button>
+          <button
+            className="account-button"
+            onClick={() =>
+              navigate(`/home/${params.username}/${btoa(params.username)}`)
+            }
+          >
+            View Account
+          </button>
         </div>
         <div className="account-balance">
           <div>

@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./views/pages/AccountHome";
+import Bank from "./views/pages/Bank";
 import Login from "./views/pages/Login";
 import NotFound from "./views/pages/404";
 import Forgot from "./views/pages/Forgot";
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
   {
     path: "/home/:username",
     element: <Home />,
+  },
+  {
+    path: "/home/:username/:bank",
+    element: <Bank />,
   },
   {
     path: "/forgot",
