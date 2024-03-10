@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 
 function CInfo(props) {
   const fill = props.fill || "currentColor";
   const secondaryfill = props.secondaryfill || fill;
-  const strokewidth = props.strokewidth || 1;
   const width = props.width || "24px";
   const height = props.height || "100%";
+  const [click, setClick] = useState(false);
+
+  const handleHover = () => {
+    click === false ? setClick(true) : setClick(false);
+  };
 
   return (
     <svg
@@ -13,21 +17,29 @@ function CInfo(props) {
       width={width}
       viewBox="0 0 16 16"
       xmlns="http://www.w3.org/2000/svg"
+      onMouseEnter={handleHover}
+      onMouseLeave={handleHover}
     >
       <g fill={secondaryfill} stroke={secondaryfill} strokeWidth="1.1">
         <circle
           cx="8"
           cy="8"
-          fill="none"
+          fill={click ? "#000" : "none"}
           r="7.5"
-          stroke={fill}
+          stroke="fill"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
-        <circle cx="8" cy="4" r="1" stroke="none" />
+        <circle
+          cx="8"
+          cy="4"
+          r="1"
+          stroke={click ? "#fff" : "none"}
+          fill={click ? "#fff" : "#000"}
+        />
         <line
           fill="none"
-          stroke={secondaryfill}
+          stroke={click ? "#fff" : "#000"}
           strokeLinecap="round"
           strokeLinejoin="round"
           x1="8"

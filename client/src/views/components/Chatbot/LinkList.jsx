@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "../../../images/icons/link";
 
 const LinkList = (props) => {
   const linkMarkup = props.options.map((link) => (
@@ -13,6 +14,7 @@ const LinkList = (props) => {
         className="chat-link-item-url"
       >
         {link.text}
+        <Link />
       </a>
     </li>
   ));

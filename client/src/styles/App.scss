@@ -1464,6 +1464,13 @@ li {
 .option-button-container {
   display: flex;
 }
+.chat-link-item-url {
+  display: flex;
+  align-items: center;
+  svg {
+    margin-left: 4px;
+  }
+}
 
 //Bank Page
 .bank-hero {
@@ -1496,8 +1503,21 @@ li {
         @include flexContainer(row, center, center);
         height: 100%;
         padding: 3px 0;
+        svg {
+          circle {
+            color: #fff;
+          }
+          circle:nth-child(2) {
+            fill: #fff;
+          }
+          line {
+            stroke: #fff;
+            color: #fff;
+          }
+        }
         span {
           padding: 0 3px;
+          font-size: 0.75rem;
         }
       }
     }
@@ -1581,6 +1601,7 @@ li {
     > div {
       @include flexContainer(column, center, center);
       padding: 12px 0;
+      cursor: pointer;
       span {
         margin-top: 6px;
         font-weight: 500;
@@ -1620,8 +1641,51 @@ li {
     h2 {
       font-size: 1.25rem;
     }
+    .c-info-container {
+      .c-info-popup {
+        @include lg-shadow(2px);
+        visibility: hidden;
+        opacity: 0;
+        position: absolute;
+        width: max-content;
+        max-width: 300px;
+        color: #fff;
+        background-color: #000;
+        font-size: 0.875rem;
+        line-height: 1.2rem;
+        letter-spacing: 0.015rem;
+        padding: 12px;
+        border-radius: 4px;
+        top: 50px;
+        left: 0;
+        transition: all 0.2s ease-in-out;
+      }
+      @include md {
+        position: relative;
+        .c-info-popup {
+          left: -20px;
+          top: 35px;
+          &::after {
+            content: "";
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid #000;
+            left: 23px;
+            top: -7px;
+            position: absolute;
+          }
+        }
+      }
+      &:hover {
+        .c-info-popup {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+    }
     .past-header {
       @include flexContainer(row, flex-start, center);
+      position: relative;
       h2 {
         margin: 18px 6px;
       }
@@ -1647,7 +1711,6 @@ li {
           border-radius: 4px;
         }
       }
-
       button {
         @include lg-shadow(0.25px);
         height: 48px;

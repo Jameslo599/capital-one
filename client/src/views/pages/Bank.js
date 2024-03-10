@@ -16,7 +16,7 @@ import RightArrow from "../../images/icons/right-arrow";
 
 function Bank() {
   const [backendData, setBackendData] = useState(null);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState();
   const [error, setError] = useState();
   const params = useParams();
   const navigate = useNavigate();
@@ -47,6 +47,7 @@ function Bank() {
     };
 
     personalize();
+    handleResize();
     window.addEventListener("resize", handleResize);
   }, [navigate, params.username]);
 
@@ -93,7 +94,9 @@ function Bank() {
               <div className="hero-balance">
                 <span>AVAILABLE BALANCE</span>
                 <div>
-                  <span>$</span>5<span>00</span>
+                  <span>$</span>
+                  {backendData.balance}
+                  <span>00</span>
                 </div>
               </div>
               <div>
@@ -127,7 +130,17 @@ function Bank() {
             <section className="upcoming-transactions">
               <div className="past-header">
                 <h2>Upcoming Transactions</h2>
-                <CInfo />
+                <div className="c-info-container">
+                  <CInfo />
+                  <p className="c-info-popup">
+                    These are transactions that are set to happen in the next 30
+                    days. Since they have not happened yet, they do not affect
+                    your available balance. If you have transactions scheduled
+                    for more than 30 days in the future and would like to edit
+                    or delete them, please call us at 1-888-464-0727 any day
+                    from 8AM - 8PM.
+                  </p>
+                </div>
               </div>
               <div className="upcoming-history">
                 <p>
@@ -140,7 +153,12 @@ function Bank() {
             <section className="past-transactions">
               <div className="past-header">
                 <h2>Past Transactions</h2>
-                <CInfo />
+                <div className="c-info-container">
+                  <CInfo />
+                  <p className="c-info-popup">
+                    This includes transactions that have affected your balance.
+                  </p>
+                </div>
               </div>
               <div>
                 <div className="transaction-search">

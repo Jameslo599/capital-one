@@ -5,7 +5,7 @@ import ArrowLeft from "../../images/icons/arrow-left";
 import LeftArrow from "../../images/icons/left-arrow";
 
 function MyHeaderView({ logoEnd, headerSupport }) {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState();
   const params = useParams();
   const navigate = useNavigate();
   const refreshPage = () => {
@@ -21,6 +21,7 @@ function MyHeaderView({ logoEnd, headerSupport }) {
   };
 
   useEffect(() => {
+    handleResize();
     window.addEventListener("resize", handleResize);
   }, []);
 
