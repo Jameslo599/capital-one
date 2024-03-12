@@ -184,7 +184,7 @@ li {
         width: 1.5rem;
       }
     }
-    .profile {
+    .avatar {
       padding: 0;
       padding-left: 0.5rem;
       @include md {
@@ -383,8 +383,9 @@ li {
     border-radius: 0 0 4px 4px;
     background-color: #00000009;
 
-    a {
+    span {
       text-decoration: underline;
+      color: #0d74af;
     }
   }
 
@@ -1747,6 +1748,69 @@ li {
       .transaction-search {
         button {
           width: 173px;
+        }
+      }
+    }
+  }
+}
+
+//Profile page
+.profile {
+  .profile-banner {
+    height: 75px;
+    border-top: 2px solid #273b49;
+    background-color: #273b49;
+    background-image: linear-gradient(to bottom, #0a5783, #273b49);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 24px;
+    h1 {
+      width: 100%;
+      max-width: 1170px;
+      color: #fff;
+      text-align: left;
+      font-size: 1.125rem;
+      padding: 0 24px;
+    }
+  }
+  .profile-greeting,
+  .profile-email {
+    @include lg-shadow(0.25px);
+    background-color: #fff;
+    padding: 24px;
+    margin: 0 8px 8px;
+    max-width: 1170px;
+    text-align: center;
+    .profile-greeting-edit,
+    .profile-email-edit {
+      @include flexContainer(row, space-between, center);
+      span {
+        font-size: 0.875rem;
+      }
+      button {
+        @include flexContainer(row, space-between, center);
+        padding: 0;
+      }
+    }
+  }
+  .profile-email {
+    text-align: left;
+    h2 {
+      font-size: 1.5rem;
+    }
+    .profile-email-edit {
+      @include flexContainer(row, space-between, center);
+      padding: 36px 0 24px;
+      border-bottom: 1px solid #cfcccf;
+      div {
+        @include flexContainer(row, center, center);
+        span {
+          font-size: 1.125rem;
+          padding-top: 3px;
+        }
+        svg {
+          margin-left: 8px;
         }
       }
     }

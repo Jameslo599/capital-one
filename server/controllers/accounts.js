@@ -4,11 +4,9 @@ module.exports = {
   getAccount: async (req, res) => {
     try {
       const account = await Account.findOne({
-        userName: req.params.id,
+        userName: req.user.userName,
       });
       if (!account) return res.status(403).json(null);
-      if (account.userName !== req.user.userName)
-        return res.status(403).json(req.user);
       res.status(200).json(account);
     } catch (err) {
       console.log(err);

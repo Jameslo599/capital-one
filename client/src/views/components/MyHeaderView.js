@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../images/logo.svg";
 import ArrowLeft from "../../images/icons/arrow-left";
 import LeftArrow from "../../images/icons/left-arrow";
 
-function MyHeaderView({ logoEnd, headerSupport }) {
+function MyHeaderView({ logoEnd, headerSupport, backArrow = false }) {
   const [isMobile, setIsMobile] = useState();
-  const params = useParams();
   const navigate = useNavigate();
   const refreshPage = () => {
     navigate(logoEnd);
@@ -29,18 +28,15 @@ function MyHeaderView({ logoEnd, headerSupport }) {
     <div>
       <header className="header">
         <nav>
-          {params.bank ? (
+          {backArrow ? (
             isMobile ? (
-              <div
-                className="nav-arrow"
-                onClick={() => navigate(`/home/${params.username}`)}
-              >
+              <div className="nav-arrow" onClick={() => window.history.back()}>
                 <ArrowLeft />
               </div>
             ) : (
               <button
                 className="back-button"
-                onClick={() => navigate(`/home/${params.username}`)}
+                onClick={() => window.history.back()}
               >
                 <LeftArrow />
                 Back

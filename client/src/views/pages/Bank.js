@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import MyHeaderView from "../components/MyHeaderView";
 import MyFooterView from "../components/MyFooterView";
 import CircleAnim2 from "../../images/icons/circle-anim-2";
@@ -18,7 +18,6 @@ function Bank() {
   const [backendData, setBackendData] = useState(null);
   const [isMobile, setIsMobile] = useState();
   const [error, setError] = useState();
-  const params = useParams();
   const navigate = useNavigate();
   const { handleClick } = useSignOut();
 
@@ -34,12 +33,10 @@ function Bank() {
   useEffect(() => {
     const personalize = async () => {
       try {
-        const response = await fetch(`/api/user/${params.username}`);
+        const response = await fetch(`/api/user`);
         const data = await response.json();
 
         if (!data) return navigate("/");
-        if (data.userName !== params.username)
-          return navigate(`/home/${data.userName}`);
         setBackendData(data);
       } catch (e) {
         setError(e);
@@ -49,7 +46,7 @@ function Bank() {
     personalize();
     handleResize();
     window.addEventListener("resize", handleResize);
-  }, [navigate, params.username]);
+  }, [navigate]);
 
   return (
     <div>
@@ -76,7 +73,8 @@ function Bank() {
                 signOut={handleClick}
               />
             }
-            logoEnd={0}
+            logoEnd={"/"}
+            backArrow={true}
           />
           <div className="bank-hero">
             <div className="bank-info-container">

@@ -5,7 +5,7 @@ const authController = require("../controllers/auth");
 const emailController = require("../controllers/email");
 const { ensureAuth } = require("../middleware/auth");
 
-router.get("/user/:id", ensureAuth, accountsController.getAccount);
+router.get("/user", ensureAuth, accountsController.getAccount);
 router.post("/login", authController.postLogin);
 router.get("/getlogged?", authController.getLogged);
 router.delete("/session", authController.logout);

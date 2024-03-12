@@ -1,9 +1,8 @@
 import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function AccountTileView({ balance }) {
   const navigate = useNavigate();
-  const params = useParams();
 
   return (
     <div>
@@ -20,12 +19,7 @@ function AccountTileView({ balance }) {
             </div>
             <span>AVAILABLE BALANCE</span>
           </div>
-          <button
-            className="account-button"
-            onClick={() =>
-              navigate(`/home/${params.username}/${btoa(params.username)}`)
-            }
-          >
+          <button className="account-button" onClick={() => navigate(`/bank`)}>
             View Account
           </button>
         </div>
@@ -43,10 +37,10 @@ function AccountTileView({ balance }) {
       </div>
       <div className="account-skip">
         Skip the password -{" "}
-        <a href="#">
+        <span>
           access your account info with face or fingerprint id when you use the
           mobile app.
-        </a>
+        </span>
       </div>
     </div>
   );

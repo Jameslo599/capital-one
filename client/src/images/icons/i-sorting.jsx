@@ -17,7 +17,7 @@ function ISorting(props) {
   }
 
   return (
-    <button className="profile" onClick={handleClick}>
+    <button className="avatar" onClick={handleClick}>
       <img alt="account avatar" src={avatar}></img>
       <svg
         className="arrow"

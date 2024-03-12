@@ -48,7 +48,7 @@ function useLogin(data, param) {
       const status = await response.status;
       if (status === 200) {
         notifySuccess();
-        navigate(`/home/${data.userName.toLowerCase()}`);
+        navigate(`/home`);
       }
       notifyError(confirmation.msg);
     } catch (e) {

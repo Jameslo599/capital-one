@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import ISorting from "../../images/icons/i-sorting";
 
 function HeaderSupport({
@@ -10,6 +10,7 @@ function HeaderSupport({
 }) {
   const [dropDown, setDropDown] = useState(false);
   const params = useParams();
+  const navigate = useNavigate();
 
   const count = () => {
     !dropDown ? setDropDown(true) : setDropDown(false);
@@ -31,11 +32,16 @@ function HeaderSupport({
           </div>
         )}
       </div>
-      {params.username && (
+      {
         <div className={`drop-down ${dropDown ? "show" : ""}`}>
           <ul>
             <li>
-              <button className="account-list">Profile</button>
+              <button
+                className="account-list"
+                onClick={() => navigate("/profile")}
+              >
+                Profile
+              </button>
             </li>
             <li>
               <button className="account-list">Security</button>
@@ -47,7 +53,7 @@ function HeaderSupport({
             </li>
           </ul>
         </div>
-      )}
+      }
     </div>
   );
 }

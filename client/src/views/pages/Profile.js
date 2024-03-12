@@ -1,21 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MyHeaderView from "../components/MyHeaderView";
-import MyBannerView from "../components/MyBannerView";
-import AccountTileView from "../components/AccountTileView";
-import ExploreTileView from "../components/ExploreTileView";
-import TransactTileView from "../components/TransactTileView";
-import CreditTileView from "../components/CreditTileView";
-import KhanTileView from "../components/KhanTileView";
-import ShoppingTileView from "../components/ShoppingTileView";
-import MapTileView from "../components/MapTileView";
 import MyFooterView from "../components/MyFooterView";
 import CircleAnim2 from "../../images/icons/circle-anim-2";
 import HeaderSupport from "../components/HeaderSupport";
 import HelpButton from "../components/HelpButton";
 import useSignOut from "../../hooks/useSignOut";
+import Pen from "../../images/icons/pen";
+import StarRate from "../../images/icons/star-rate";
 
-function Home() {
+function Profile() {
   const [backendData, setBackendData] = useState(null);
   const [error, setError] = useState();
   const navigate = useNavigate();
@@ -63,23 +57,36 @@ function Home() {
               />
             }
             logoEnd={"/"}
+            backArrow={true}
           />
-          <MyBannerView
-            user={
-              backendData.fname[0].toUpperCase() + backendData.fname.slice(1)
-            }
-          />
-          <section className="tile-layout">
-            <div className="widgets-1">
-              <AccountTileView balance={backendData.balance} />
-              <ExploreTileView />
-              <TransactTileView />
+          <section className="profile">
+            <div className="profile-banner">
+              <h1>Profile</h1>
             </div>
-            <div className="widgets-2">
-              <CreditTileView />
-              <KhanTileView />
-              <ShoppingTileView />
-              <MapTileView />
+            <div className="profile-greeting">
+              <div>image here</div>
+              <div className="profile-greeting-edit">
+                <span>Greeting Name</span>
+                <button>
+                  <Pen />
+                </button>
+              </div>
+            </div>
+            <div className="profile-address"></div>
+            <div className="profile-phone"></div>
+            <div className="profile-email">
+              <h2>Personal Email</h2>
+              <div className="profile-email-edit">
+                <div>
+                  <span>Email</span>
+
+                  <StarRate />
+                </div>
+
+                <button>
+                  <Pen />
+                </button>
+              </div>
             </div>
           </section>
           <MyFooterView />
@@ -89,4 +96,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Profile;

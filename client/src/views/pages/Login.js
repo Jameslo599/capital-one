@@ -18,8 +18,7 @@ function Login() {
       try {
         const response = await fetch("/api/getlogged?");
         const data = await response.json();
-        console.log(data);
-        return data === false ? null : navigate(`/home/${data}`);
+        return data === false ? null : navigate(`/home`);
       } catch (error) {
         console.log(error);
       }
