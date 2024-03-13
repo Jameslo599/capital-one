@@ -1772,9 +1772,14 @@ li {
       text-align: left;
       font-size: 1.125rem;
       padding: 0 24px;
+      @include md {
+        font-size: 2rem;
+      }
     }
   }
   .profile-greeting,
+  .profile-address,
+  .profile-phone,
   .profile-email {
     @include lg-shadow(0.25px);
     background-color: #fff;
@@ -1794,14 +1799,21 @@ li {
       }
     }
   }
+  .profile-greeting,
+  .profile-address,
+  .profile-phone,
   .profile-email {
+    @include flexContainer(column, flex-start, unset);
     text-align: left;
     h2 {
       font-size: 1.5rem;
+      padding-bottom: 12px;
     }
+    .profile-address-edit,
+    .profile-phone-edit,
     .profile-email-edit {
       @include flexContainer(row, space-between, center);
-      padding: 36px 0 24px;
+      padding: 24px 0;
       border-bottom: 1px solid #cfcccf;
       div {
         @include flexContainer(row, center, center);
@@ -1813,6 +1825,60 @@ li {
           margin-left: 8px;
         }
       }
+
+      button {
+        align-self: flex-end;
+      }
+    }
+    .profile-address-edit {
+      .profile-category {
+        @include flexContainer(column, flex-start, flex-start);
+        span {
+          font-size: 0.875rem;
+        }
+        > span {
+          font-size: 1.125rem;
+          margin-top: 8px;
+          line-height: 1.5rem;
+        }
+      }
+    }
+    .profile-phone-edit {
+      .profile-category {
+        @include flexContainer(column, flex-start, flex-start);
+        span {
+          font-size: 0.875rem;
+        }
+        .undefined,
+        .phone-num {
+          color: #687680;
+          font-size: 1.125rem;
+          margin-top: 3px;
+        }
+        .phone-num {
+          color: #000;
+        }
+      }
+    }
+    @include lg {
+      @include flexContainer(row, flex-start, unset);
+      h2,
+      .profile-image {
+        flex: 0 0 30%;
+        padding: 24px 24px 0 0;
+      }
+      h2 + div,
+      .profile-image + div {
+        flex: 0 0 70%;
+      }
+    }
+  }
+  @include xl {
+    .profile-greeting,
+    .profile-address,
+    .profile-phone,
+    .profile-email {
+      margin: 8px auto;
     }
   }
 }

@@ -64,7 +64,7 @@ function Profile() {
               <h1>Profile</h1>
             </div>
             <div className="profile-greeting">
-              <div>image here</div>
+              <div className="profile-image">image here</div>
               <div className="profile-greeting-edit">
                 <span>Greeting Name</span>
                 <button>
@@ -72,20 +72,98 @@ function Profile() {
                 </button>
               </div>
             </div>
-            <div className="profile-address"></div>
-            <div className="profile-phone"></div>
+            <div className="profile-address">
+              <h2>Addresses</h2>
+              <div>
+                <div className="profile-address-edit">
+                  <div className="profile-category">
+                    <div>
+                      <span>Residential Address</span>
+                    </div>
+                    <span>
+                      1234 April Meadow Way
+                      <br />
+                      Sugar Land, TX, 77879
+                    </span>
+                  </div>
+                  <button>
+                    <Pen />
+                  </button>
+                </div>
+                <div className="profile-address-edit">
+                  <div className="profile-category">
+                    <div>
+                      <span>Primary Mailing Address</span>
+                      <StarRate />
+                    </div>
+                    <span>
+                      1234 April Meadow Way
+                      <br />
+                      Sugar Land, TX, 77879
+                    </span>
+                  </div>
+                  <button>
+                    <Pen />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div className="profile-phone">
+              <h2>Phone</h2>
+              <div>
+                <div className="profile-phone-edit">
+                  <div className="profile-category">
+                    <div>
+                      <span>Mobile</span>
+                    </div>
+                    <div>
+                      <span className="phone-num">(214) 901-0531 </span>
+                      <StarRate />
+                    </div>
+                  </div>
+                  <button>
+                    <Pen />
+                  </button>
+                </div>
+                <div className="profile-phone-edit">
+                  <div className="profile-category">
+                    <div>
+                      <span>Home</span>
+                    </div>
+                    <span className="undefined">(XXX) XXX-XXXX </span>
+                  </div>
+                  <button>
+                    <Pen />
+                  </button>
+                </div>
+                <div className="profile-phone-edit">
+                  <div className="profile-category">
+                    <div>
+                      <span>Work</span>
+                    </div>
+                    <span className="undefined">(XXX) XXX-XXXX </span>
+                  </div>
+                  <button>
+                    <Pen />
+                  </button>
+                </div>
+              </div>
+            </div>
+
             <div className="profile-email">
               <h2>Personal Email</h2>
-              <div className="profile-email-edit">
-                <div>
-                  <span>Email</span>
+              <div>
+                <div className="profile-email-edit">
+                  <div>
+                    <span>Email</span>
 
-                  <StarRate />
+                    <StarRate />
+                  </div>
+                  <button>
+                    <Pen />
+                  </button>
                 </div>
-
-                <button>
-                  <Pen />
-                </button>
               </div>
             </div>
           </section>
