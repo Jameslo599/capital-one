@@ -8,12 +8,24 @@ import HelpButton from "../components/HelpButton";
 import useSignOut from "../../hooks/useSignOut";
 import Pen from "../../images/icons/pen";
 import StarRate from "../../images/icons/star-rate";
+import UpdateModal from "../components/UpdateModal";
+import UpdateGreeting from "../components/UpdateGreeting";
+import UpdateAddress from "../components/UpdateAddress";
+import UpdatePhone from "../components/UpdatePhone";
+import UpdateEmail from "../components/UpdateEmail";
 
 function Profile() {
   const [backendData, setBackendData] = useState(null);
   const [error, setError] = useState();
   const navigate = useNavigate();
   const { handleClick } = useSignOut();
+
+  const [open, setOpen] = useState(null);
+  const [title, setTitle] = useState(null);
+  const [children, setChildren] = useState(null);
+  const onClose = () => {
+    setOpen(false);
+  };
 
   useEffect(() => {
     const personalize = async () => {
@@ -67,9 +79,21 @@ function Profile() {
               <div className="profile-image">image here</div>
               <div className="profile-greeting-edit">
                 <span>Greeting Name</span>
-                <button>
+                <button
+                  onClick={() => {
+                    setOpen(true);
+                    setTitle("Edit Greeting Message");
+                    setChildren(UpdateGreeting);
+                  }}
+                >
                   <Pen />
                 </button>
+                <UpdateModal
+                  open={open}
+                  onClose={onClose}
+                  children={children}
+                  title={title}
+                ></UpdateModal>
               </div>
             </div>
             <div className="profile-address">
@@ -86,9 +110,21 @@ function Profile() {
                       Sugar Land, TX, 77879
                     </span>
                   </div>
-                  <button>
+                  <button
+                    onClick={() => {
+                      setOpen(true);
+                      setTitle("Edit Residential Address");
+                      setChildren(UpdateAddress);
+                    }}
+                  >
                     <Pen />
                   </button>
+                  <UpdateModal
+                    open={open}
+                    onClose={onClose}
+                    children={children}
+                    title={title}
+                  ></UpdateModal>
                 </div>
                 <div className="profile-address-edit">
                   <div className="profile-category">
@@ -102,9 +138,21 @@ function Profile() {
                       Sugar Land, TX, 77879
                     </span>
                   </div>
-                  <button>
+                  <button
+                    onClick={() => {
+                      setOpen(true);
+                      setTitle("Edit Mailing Address");
+                      setChildren(UpdateAddress);
+                    }}
+                  >
                     <Pen />
                   </button>
+                  <UpdateModal
+                    open={open}
+                    onClose={onClose}
+                    children={children}
+                    title={title}
+                  ></UpdateModal>
                 </div>
               </div>
             </div>
@@ -122,9 +170,21 @@ function Profile() {
                       <StarRate />
                     </div>
                   </div>
-                  <button>
+                  <button
+                    onClick={() => {
+                      setOpen(true);
+                      setTitle("Edit Mobile Number");
+                      setChildren(UpdatePhone);
+                    }}
+                  >
                     <Pen />
                   </button>
+                  <UpdateModal
+                    open={open}
+                    onClose={onClose}
+                    children={children}
+                    title={title}
+                  ></UpdateModal>
                 </div>
                 <div className="profile-phone-edit">
                   <div className="profile-category">
@@ -133,9 +193,21 @@ function Profile() {
                     </div>
                     <span className="undefined">(XXX) XXX-XXXX </span>
                   </div>
-                  <button>
+                  <button
+                    onClick={() => {
+                      setOpen(true);
+                      setTitle("Add Home Number");
+                      setChildren(UpdatePhone);
+                    }}
+                  >
                     <Pen />
                   </button>
+                  <UpdateModal
+                    open={open}
+                    onClose={onClose}
+                    children={children}
+                    title={title}
+                  ></UpdateModal>
                 </div>
                 <div className="profile-phone-edit">
                   <div className="profile-category">
@@ -144,9 +216,21 @@ function Profile() {
                     </div>
                     <span className="undefined">(XXX) XXX-XXXX </span>
                   </div>
-                  <button>
+                  <button
+                    onClick={() => {
+                      setOpen(true);
+                      setTitle("Add Work Number");
+                      setChildren(UpdatePhone);
+                    }}
+                  >
                     <Pen />
                   </button>
+                  <UpdateModal
+                    open={open}
+                    onClose={onClose}
+                    children={children}
+                    title={title}
+                  ></UpdateModal>
                 </div>
               </div>
             </div>
@@ -160,9 +244,21 @@ function Profile() {
 
                     <StarRate />
                   </div>
-                  <button>
+                  <button
+                    onClick={() => {
+                      setOpen(true);
+                      setTitle("Edit Email Address");
+                      setChildren(UpdateEmail);
+                    }}
+                  >
                     <Pen />
                   </button>
+                  <UpdateModal
+                    open={open}
+                    onClose={onClose}
+                    children={children}
+                    title={title}
+                  ></UpdateModal>
                 </div>
               </div>
             </div>
