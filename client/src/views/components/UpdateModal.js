@@ -16,8 +16,10 @@ export default function UpdateModal({ open, children, onClose, title, icon }) {
           <ERemove />
         </button>
         {icon}
-        <h1>{title}</h1>
-        {children}
+        <div className="update-modal__container">
+          <h2>{title}</h2>
+          {children}
+        </div>
       </div>
     </>,
     document.getElementById("portal")
