@@ -10,3 +10,4 @@ utilized react portals to implement modal with working z-index functionality.
 created a linked list for chatbot, learned onclick = {() => {}} pattern to pass arguments into event handlers
 redo my cookie storage logic
 Used nodemailer to create my own password reset system.
+implementing BEM naming conventions
