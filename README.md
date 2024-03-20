@@ -11,3 +11,4 @@ created a linked list for chatbot, learned onclick = {() => {}} pattern to pass 
 redo my cookie storage logic
 Used nodemailer to create my own password reset system.
 implementing BEM naming conventions
+used cloudinary

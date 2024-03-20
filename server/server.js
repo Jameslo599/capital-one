@@ -7,11 +7,22 @@ const MongoStore = require("connect-mongo");
 const logger = require("morgan");
 const connectDB = require("./config/database");
 const accountRoutes = require("./routes/accounts");
+const cloudinary = require("cloudinary").v2;
 
 require("dotenv").config({ path: "./config/.env" });
 
+// Return "https" URLs by setting secure: true
+cloudinary.config({
+  cloud_name: "dfa89qx8v",
+  api_key: "764186995544751",
+  api_secret: `${process.env.CLOUDINARY_SECRET}`,
+  secure: true,
+});
+
 // Passport config
 require("./config/passport")(passport);
+// Log the configuration
+console.log(cloudinary.config());
 
 connectDB();
 
