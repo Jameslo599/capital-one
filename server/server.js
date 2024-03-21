@@ -21,8 +21,6 @@ cloudinary.config({
 
 // Passport config
 require("./config/passport")(passport);
-// Log the configuration
-console.log(cloudinary.config());
 
 connectDB();
 
