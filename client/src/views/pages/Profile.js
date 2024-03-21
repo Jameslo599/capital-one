@@ -13,6 +13,7 @@ import UpdateGreeting from "../components/UpdateGreeting";
 import UpdateAddress from "../components/UpdateAddress";
 import UpdatePhone from "../components/UpdatePhone";
 import UpdateEmail from "../components/UpdateEmail";
+import avatar from "../../images/avatar.svg";
 
 function Profile() {
   const [backendData, setBackendData] = useState(null);
@@ -76,7 +77,9 @@ function Profile() {
               <h1>Profile</h1>
             </div>
             <div className="profile-greeting">
-              <div className="profile-image">image here</div>
+              <div className="profile-image">
+                <img src={avatar} alt="profile"></img>
+              </div>
               <div className="profile-greeting-edit">
                 <span>Greeting Name</span>
                 <button

@@ -1777,6 +1777,14 @@ li {
       }
     }
   }
+  .profile-image {
+    text-align: center;
+    margin-bottom: 32px;
+    @include lg {
+      text-align: left;
+      margin-bottom: 0px;
+    }
+  }
   .profile-greeting,
   .profile-address,
   .profile-phone,
@@ -1796,6 +1804,15 @@ li {
       button {
         @include flexContainer(row, space-between, center);
         padding: 0;
+      }
+    }
+    @include lg {
+      .profile-greeting-edit {
+        @include flexContainer(row, space-between, flex-start);
+        margin-top: 20px;
+        span {
+          margin-top: 4px;
+        }
       }
     }
   }
@@ -1865,7 +1882,6 @@ li {
       h2,
       .profile-image {
         flex: 0 0 30%;
-        padding: 24px 24px 0 0;
       }
       h2 + div,
       .profile-image + div {
@@ -1908,7 +1924,7 @@ li {
       @include flexContainer(column, flex-start, center);
       height: 100%;
       width: 100%;
-      padding: 0 25px 25px;
+      padding: 0 25px 50px;
     }
   }
   h2 {
@@ -1923,8 +1939,57 @@ li {
       margin-top: 50px;
     }
   }
-  .update-residential,
   .update-greeting {
+    @include flexContainer(column, flex-start, flex-start);
+    padding: 28px 28px;
+    margin: 0 auto;
+    .update-greeting-container {
+      @include flexContainer(row, space-between, center);
+      width: 100%;
+
+      label,
+      span {
+        font-size: 0.875rem;
+        font-weight: 500;
+        padding-bottom: 8px;
+      }
+      span {
+        color: #6e6e6e;
+      }
+    }
+    .update-greeting__input {
+      width: 100%;
+      font-size: 16px;
+      font-weight: 400;
+      padding: 13px 48px 13px 16px;
+      height: 48px;
+      border-radius: 6px;
+      border: solid 1px #6e6e6e;
+      background-color: #fff;
+      color: #121212;
+    }
+    button {
+      @include button(#fff, none);
+      background-color: #128020;
+      margin: 32px auto 0 auto;
+      max-width: 264px;
+    }
+    @include md {
+      padding: 36px 85px;
+      .update-greeting__button {
+        margin: 36px auto 0 auto;
+        max-width: 386px;
+      }
+    }
+    @include lg {
+      padding: 0;
+      margin: 50px auto 0;
+      .update-greeting__button {
+        margin-top: 24px;
+      }
+    }
+  }
+  .update-residential {
     padding: 28px 28px;
     margin: 0 auto;
     > div {
@@ -1956,8 +2021,7 @@ li {
         appearance: none;
       }
     }
-    .update-residential__state-container,
-    .update-greeting__label-container_label {
+    .update-residential__state-container {
       @include flexContainer(row, center, center);
       > div:first-child {
         width: 70%;
