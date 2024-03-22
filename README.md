@@ -12,3 +12,4 @@ redo my cookie storage logic
 Used nodemailer to create my own password reset system.
 implementing BEM naming conventions
 used cloudinary
+worked with file reader and image uploading for the first time

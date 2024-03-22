@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MyHeaderView from "../components/MyHeaderView";
 import MyFooterView from "../components/MyFooterView";
@@ -26,6 +26,21 @@ function Profile() {
   const [children, setChildren] = useState(null);
   const onClose = () => {
     setOpen(false);
+  };
+
+  const uploadedImage = useRef(null);
+  const imageUploader = useRef(null);
+  const handleImageUpload = (e) => {
+    const [file] = e.target.files;
+    if (file) {
+      const reader = new FileReader();
+      const { current } = uploadedImage;
+      current.file = file;
+      reader.onload = (e) => {
+        current.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   useEffect(() => {
@@ -78,7 +93,17 @@ function Profile() {
             </div>
             <div className="profile-greeting">
               <div className="profile-image">
-                <img src={avatar} alt="profile"></img>
+                <img src={avatar} ref={uploadedImage} alt="profile"></img>
+                <div onClick={() => imageUploader.current.click()}>
+                  <span>ADD PHOTO</span>
+                </div>
+                <input
+                  type="file"
+                  accept="image/*"
+                  multiple="false"
+                  ref={imageUploader}
+                  onChange={handleImageUpload}
+                />
               </div>
               <div className="profile-greeting-edit">
                 <span>Greeting Name</span>

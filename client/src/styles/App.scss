@@ -1778,8 +1778,36 @@ li {
     }
   }
   .profile-image {
+    width: 102px;
+    height: 102px;
     text-align: center;
-    margin-bottom: 32px;
+    margin: 0 auto 32px;
+    position: relative;
+    img {
+      width: 102px;
+      height: 102px;
+      border-radius: 100%;
+      border-style: none;
+    }
+    div {
+      @include flexContainer(column, center, center);
+      position: absolute;
+      top: 0;
+      height: 102px;
+      width: 102px;
+      border-radius: 100%;
+      border-style: none;
+      color: #ffffffdd;
+      background-color: #212536a6;
+      opacity: 0;
+      cursor: pointer;
+      &:hover {
+        opacity: 1;
+      }
+    }
+    input {
+      display: none;
+    }
     @include lg {
       text-align: left;
       margin-bottom: 0px;
