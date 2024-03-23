@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import avatar from "../avatar.svg";
 
 function ISorting(props) {
@@ -16,9 +16,28 @@ function ISorting(props) {
     e.currentTarget.dispatchEvent(new Event("ncstatechanged"));
   }
 
+  const [backendData, setBackendData] = useState(null);
+
+  useEffect(() => {
+    const personalize = async () => {
+      try {
+        const response = await fetch(`/api/user`);
+        const data = await response.json();
+        setBackendData(data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+    personalize();
+  }, []);
+
   return (
     <button className="avatar" onClick={handleClick}>
-      <img alt="account avatar" src={avatar}></img>
+      <img
+        alt="account avatar"
+        src={backendData ? backendData.cloudinary_id : avatar}
+      ></img>
       <svg
         className="arrow"
         height={height}

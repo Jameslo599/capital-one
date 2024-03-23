@@ -30,16 +30,19 @@ function Profile() {
 
   const uploadedImage = useRef(null);
   const imageUploader = useRef(null);
-  const handleImageUpload = (e) => {
-    const [file] = e.target.files;
-    if (file) {
-      const reader = new FileReader();
+  const handleImageUpload = async (e) => {
+    try {
+      const formData = new FormData();
+      formData.append("file", e.target.files[0]);
+      const response = await fetch("/api/avatar", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await response.json();
       const { current } = uploadedImage;
-      current.file = file;
-      reader.onload = (e) => {
-        current.src = e.target.result;
-      };
-      reader.readAsDataURL(file);
+      current.src = data;
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -93,7 +96,11 @@ function Profile() {
             </div>
             <div className="profile-greeting">
               <div className="profile-image">
-                <img src={avatar} ref={uploadedImage} alt="profile"></img>
+                <img
+                  src={backendData ? backendData.cloudinary_id : avatar}
+                  ref={uploadedImage}
+                  alt="profile"
+                ></img>
                 <div onClick={() => imageUploader.current.click()}>
                   <span>ADD PHOTO</span>
                 </div>

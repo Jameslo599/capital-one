@@ -4,8 +4,10 @@ const accountsController = require("../controllers/accounts");
 const authController = require("../controllers/auth");
 const emailController = require("../controllers/email");
 const { ensureAuth } = require("../middleware/auth");
+const upload = require("../middleware/multer");
 
 router.get("/user", ensureAuth, accountsController.getAccount);
+router.post("/avatar", upload.single("file"), accountsController.postAvatar);
 router.post("/login", authController.postLogin);
 router.get("/getlogged?", authController.getLogged);
 router.delete("/session", authController.logout);
