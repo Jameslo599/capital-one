@@ -53,7 +53,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
         );
         botMessage2 = createChatBotMessage(
           "I can also help with other topics, such as:",
-          { widget: "PostSumm" }
+          { widget: "postSumm" }
         );
         break;
       default:

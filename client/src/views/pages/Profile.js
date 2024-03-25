@@ -32,6 +32,11 @@ function Profile() {
   const imageUploader = useRef(null);
   const handleImageUpload = async (e) => {
     try {
+      if (e.target.files[0].size > 1048576) {
+        alert("File must be under 1MB");
+        return (e.target.value = "");
+      }
+      console.log(e.target.files[0]);
       const formData = new FormData();
       formData.append("file", e.target.files[0]);
       const response = await fetch("/api/avatar", {
