@@ -878,6 +878,8 @@ li {
 
 //Loading Page
 .loading {
+  width: 100%;
+  margin: 24px 0;
   > div {
     @include flexContainer(column, center, center);
     width: 100%;
@@ -2088,7 +2090,8 @@ li {
     height: auto;
     top: 100%;
     > button:first-child {
-      top: 2%;
+      top: 1vh;
+      padding: 2px;
     }
   }
 }

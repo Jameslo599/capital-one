@@ -31,7 +31,10 @@ function Login() {
     password: "",
     remember: false,
   });
-  const { isLoading, handleSubmit } = useLogin(formData, "/api/login");
+  const { isLoading, handleSubmit } = useLogin(
+    formData,
+    "/api/update/greeting"
+  );
 
   return (
     <div className="login">

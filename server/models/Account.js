@@ -36,6 +36,10 @@ const AccountSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  greeting: {
+    type: String,
+    required: false,
+  },
 });
 
 // Password hash middleware.

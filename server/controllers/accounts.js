@@ -1,5 +1,6 @@
 const Account = require("../models/Account");
 const cloudinary = require("../middleware/cloudinary");
+const validator = require("validator");
 
 /////////////////////////
 // Uploads an image file
@@ -87,6 +88,30 @@ module.exports = {
     } catch (err) {
       console.log(err);
       res.status(400);
+    }
+  },
+  putGreeting: async (req, res) => {
+    const validationErrors = [];
+    if (!validator.isAscii(req.body.message, ["en-US"]))
+      validationErrors.push({
+        msg: "Message must contain only letters",
+      });
+    if (validator.isEmpty(req.body.message, { ignore_whitespace: true }))
+      validationErrors.push({
+        msg: "Message cannot be empty",
+      });
+    if (validationErrors.length) {
+      return res.status(400).json(validationErrors);
+    }
+
+    try {
+      const message = req.body.message;
+      await Account.findByIdAndUpdate(req.user.id, {
+        greeting: message,
+      });
+      res.status(200).json("Success!");
+    } catch (err) {
+      res.status(400).json(err);
     }
   },
   // deleteTodo: async (req, res)=>{

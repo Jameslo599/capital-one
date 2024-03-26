@@ -36,7 +36,6 @@ function Profile() {
         alert("File must be under 1MB");
         return (e.target.value = "");
       }
-      console.log(e.target.files[0]);
       const formData = new FormData();
       formData.append("file", e.target.files[0]);
       const response = await fetch("/api/avatar", {
@@ -63,7 +62,6 @@ function Profile() {
         setError(e);
       }
     };
-
     personalize();
   }, [navigate]);
 
@@ -118,12 +116,14 @@ function Profile() {
                 />
               </div>
               <div className="profile-greeting-edit">
-                <span>Greeting Name</span>
+                <span>
+                  {backendData ? backendData.greeting : "Greeting Name"}
+                </span>
                 <button
                   onClick={() => {
                     setOpen(true);
                     setTitle("Edit Greeting Message");
-                    setChildren(UpdateGreeting);
+                    setChildren(<UpdateGreeting />);
                   }}
                 >
                   <Pen />
