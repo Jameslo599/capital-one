@@ -1,5 +1,5 @@
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import { ToastContainer } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 import MyHeaderView from "../components/MyHeaderView";
 import HeaderSupport from "../components/HeaderSupport";
 import Loading from "../components/Loading";
@@ -18,7 +18,7 @@ function Forgot() {
 
   return (
     <div className="login forgot">
-      <ToastContainer />
+      {/* <ToastContainer /> */}
       <MyHeaderView
         logoEnd="/"
         headerSupport={<HeaderSupport helpButton={""} signText={"Sign In"} />}

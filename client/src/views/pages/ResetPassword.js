@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import { ToastContainer } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 import MyHeaderView from "../components/MyHeaderView";
 import Loading from "../components/Loading";
 import forgot from "../../images/lock.svg";
@@ -64,7 +64,7 @@ function ResetPassword() {
         </div>
       ) : (
         <div className="login forgot">
-          <ToastContainer />
+          {/* <ToastContainer /> */}
           <MyHeaderView logoEnd="/" />
           <div className="section-container">
             <section className="not-found">

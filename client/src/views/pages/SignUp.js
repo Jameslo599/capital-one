@@ -1,5 +1,5 @@
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import { ToastContainer } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 import logo from "../../images/logo.svg";
 import HeaderSupport from "../components/HeaderSupport";
 import Loading from "../components/Loading";
@@ -22,7 +22,7 @@ function SignUp() {
 
   return (
     <div className="login forgot create">
-      <ToastContainer />
+      {/* <ToastContainer /> */}
       <MyHeaderView
         logoEnd={"/"}
         headerSupport={<HeaderSupport helpButton={""} signText={"Sign In"} />}

@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import Loading from "../components/Loading";
 import useInfo from "../../hooks/useInfo";
 
-function UpdateGreeting() {
+function UpdateGreeting({ personalize }) {
   const [count, setCount] = useState(0);
   const [formData, setFormData] = useState({
     message: "",
   });
-  const { isLoading, handleSubmit } = useInfo(formData, "/api/update/greeting");
+  const { isLoading, handleSubmit } = useInfo(
+    formData,
+    "/api/update/greeting",
+    personalize
+  );
   const handleChange = (e) => {
     setCount(e.target.value.length);
     const { name, value } = e.target;

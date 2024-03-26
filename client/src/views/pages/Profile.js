@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MyHeaderView from "../components/MyHeaderView";
 import MyFooterView from "../components/MyFooterView";
@@ -50,20 +50,22 @@ function Profile() {
     }
   };
 
-  useEffect(() => {
-    const personalize = async () => {
-      try {
-        const response = await fetch(`/api/user`);
-        const data = await response.json();
+  const personalize = useCallback(async () => {
+    try {
+      const response = await fetch(`/api/user`);
+      const data = await response.json();
 
-        if (!data) return navigate("/");
-        setBackendData(data);
-      } catch (e) {
-        setError(e);
-      }
-    };
-    personalize();
+      if (!data) return navigate("/");
+      setBackendData(data);
+      setOpen(false);
+    } catch (e) {
+      setError(e);
+    }
   }, [navigate]);
+
+  useEffect(() => {
+    personalize();
+  }, [navigate, personalize]);
 
   return (
     <div>
@@ -123,7 +125,7 @@ function Profile() {
                   onClick={() => {
                     setOpen(true);
                     setTitle("Edit Greeting Message");
-                    setChildren(<UpdateGreeting />);
+                    setChildren(<UpdateGreeting personalize={personalize} />);
                   }}
                 >
                   <Pen />

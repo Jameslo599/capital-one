@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import { ToastContainer } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 import "../../styles/reset.scss";
 import "../../styles/App.scss";
 import MyHeaderView from "../components/MyHeaderView";
@@ -38,7 +38,7 @@ function Login() {
 
   return (
     <div className="login">
-      <ToastContainer />
+      {/* <ToastContainer /> */}
       <MyHeaderView logoEnd={0} />
       <section className="login">
         <div className="message-box">

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { toast, Bounce } from "react-toastify";
 
-function useInfo(data, param) {
+function useInfo(data, param, callback) {
   const [isLoading, setIsLoading] = useState(false);
   const notifyError = (message) =>
     toast.error(message, {
@@ -46,8 +46,13 @@ function useInfo(data, param) {
       const status = await response.status;
       if (status === 200) {
         notifySuccess();
+        callback();
+        data.message = "";
+      } else {
+        for (const error of confirmation) {
+          notifyError(`${error.msg}`);
+        }
       }
-      notifyError(confirmation[0].msg);
     } catch (e) {
       notifyError(e);
     } finally {
