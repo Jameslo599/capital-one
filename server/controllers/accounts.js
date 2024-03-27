@@ -1,4 +1,5 @@
 const Account = require("../models/Account");
+const Address = require("../models/Address");
 const cloudinary = require("../middleware/cloudinary");
 const validator = require("validator");
 
@@ -71,8 +72,11 @@ module.exports = {
       const account = await Account.findOne({
         userName: req.user.userName,
       });
+      const address = await Address.findOne({
+        id: req.user.id,
+      });
       if (!account) return res.status(403).json(null);
-      res.status(200).json(account);
+      res.status(200).json({ ...account.toJSON(), ...address.toJSON() });
     } catch (err) {
       console.log(err);
       res.status(400);
@@ -94,7 +98,7 @@ module.exports = {
     const validationErrors = [];
     if (!validator.isAscii(req.body.message, ["en-US"]))
       validationErrors.push({
-        msg: "Message must contain only letters",
+        msg: "Unknown characters detected",
       });
     if (validator.isEmpty(req.body.message, { ignore_whitespace: true }))
       validationErrors.push({
@@ -112,6 +116,66 @@ module.exports = {
       res.status(200).json("Success!");
     } catch (err) {
       res.status(400).json(err);
+    }
+  },
+  putAddress: async (req, res) => {
+    const validationErrors = [];
+    if (
+      !validator.isAlphanumeric(req.body.street_address, "en-US", {
+        ignore: " ",
+      })
+    )
+      validationErrors.push({
+        msg: "Invalid street address",
+      });
+    if (req.body.apartment_suite) {
+      if (!validator.isAlphanumeric(req.body.apartment_suite, ["en-US"]))
+        validationErrors.push({
+          msg: "Invalid apartment/suite",
+        });
+    }
+    if (!validator.isAlpha(req.body.city, ["en-US"]))
+      validationErrors.push({
+        msg: "Invalid city",
+      });
+    if (!validator.isPostalCode(req.body.zip, "US"))
+      validationErrors.push({
+        msg: "Invalid ZIP code",
+      });
+
+    if (validationErrors.length) {
+      return res.status(400).json(validationErrors);
+    }
+
+    const address = new Address({
+      id: req.user.id,
+      street_address: req.body.street_address,
+      apartment_suite: req.body.apartment_suite,
+      city: req.body.city,
+      state: req.body.state,
+      zip: req.body.zip,
+    });
+    try {
+      const existingUser = await Address.findOne({ id: req.user.id });
+      if (existingUser) {
+        await Address.findOneAndUpdate(
+          { id: req.user.id },
+          {
+            id: req.user.id,
+            street_address: req.body.street_address,
+            apartment_suite: req.body.apartment_suite,
+            city: req.body.city,
+            state: req.body.state,
+            zip: req.body.zip,
+          }
+        );
+        return res.status(200).json("Success!");
+      }
+      await Address.create(address);
+      res.status(200).json("Success!");
+    } catch (err) {
+      res.status(400).json(err);
+      console.log(err);
     }
   },
   // deleteTodo: async (req, res)=>{

@@ -54,7 +54,6 @@ function Profile() {
     try {
       const response = await fetch(`/api/user`);
       const data = await response.json();
-
       if (!data) return navigate("/");
       setBackendData(data);
       setOpen(false);
@@ -62,7 +61,6 @@ function Profile() {
       setError(e);
     }
   }, [navigate]);
-
   useEffect(() => {
     personalize();
   }, [navigate, personalize]);
@@ -147,16 +145,22 @@ function Profile() {
                       <span>Residential Address</span>
                     </div>
                     <span>
-                      1234 April Meadow Way
+                      {backendData.street_address}
                       <br />
-                      Sugar Land, TX, 77879
+                      {backendData.apartment_suite ? (
+                        <>
+                          {backendData.apartment_suite}
+                          <br />
+                        </>
+                      ) : null}
+                      {backendData.city}, {backendData.state}, {backendData.zip}
                     </span>
                   </div>
                   <button
                     onClick={() => {
                       setOpen(true);
                       setTitle("Edit Residential Address");
-                      setChildren(UpdateAddress);
+                      setChildren(<UpdateAddress personalize={personalize} />);
                     }}
                   >
                     <Pen />
@@ -171,7 +175,7 @@ function Profile() {
                 <div className="profile-address-edit">
                   <div className="profile-category">
                     <div>
-                      <span>Primary Mailing Address</span>
+                      <span>Mailing Address</span>
                       <StarRate />
                     </div>
                     <span>
@@ -184,7 +188,7 @@ function Profile() {
                     onClick={() => {
                       setOpen(true);
                       setTitle("Edit Mailing Address");
-                      setChildren(UpdateAddress);
+                      setChildren(<UpdateAddress />);
                     }}
                   >
                     <Pen />

@@ -14,6 +14,7 @@ function useInfo(data, param, callback) {
       progress: undefined,
       theme: "colored",
       transition: Bounce,
+      toastId: "residentialError",
     });
   const notifySuccess = () =>
     toast.success("Updated!", {
@@ -26,6 +27,7 @@ function useInfo(data, param, callback) {
       progress: undefined,
       theme: "colored",
       transition: Bounce,
+      toastId: "residentialSuccess",
     });
   const dismissAll = () => toast.dismiss();
 
@@ -44,13 +46,17 @@ function useInfo(data, param, callback) {
       });
       const confirmation = await response.json();
       const status = await response.status;
+      console.log(status);
       if (status === 200) {
         notifySuccess();
         callback();
-        data.message = "";
       } else {
-        for (const error of confirmation) {
-          notifyError(`${error.msg}`);
+        if (confirmation.msg) {
+          for (const error of confirmation) {
+            notifyError(`${error.msg}`);
+          }
+        } else {
+          notifyError(confirmation);
         }
       }
     } catch (e) {

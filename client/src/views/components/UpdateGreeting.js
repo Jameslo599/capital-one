@@ -24,14 +24,23 @@ function UpdateGreeting({ personalize }) {
   return (
     <>
       {isLoading === false ? (
-        <form className="update-greeting" method="put" onSubmit={handleSubmit}>
+        <form
+          className="update-greeting"
+          method="put"
+          onSubmit={handleSubmit}
+          name="greeting_message"
+        >
           <div className="update-greeting-container">
-            <label className="update-greeting__label-container_label">
+            <label
+              className="update-greeting__label-container_label"
+              htmlFor="greeting"
+            >
               Greeting
             </label>
             <span>{count} / 20</span>
           </div>
           <input
+            id="greeting"
             type="text"
             className="update-greeting__input"
             onChange={handleChange}

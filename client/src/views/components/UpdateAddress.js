@@ -1,68 +1,114 @@
-import React from "react";
+import React, { useState } from "react";
 import State from "../../images/icons/select-state";
+import useInfo from "../../hooks/useInfo";
+import Loading from "../components/Loading";
 
-const UpdateAddress = () => {
+function UpdateAddress({ personalize }) {
+  const [formData, setFormData] = useState({
+    street_address: "",
+    apartment_suite: "",
+    city: "",
+    state: "",
+    zip: "",
+  });
+  const { isLoading, handleSubmit } = useInfo(
+    formData,
+    "/api/update/address",
+    personalize
+  );
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    console.log(name, value);
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
   return (
     <>
-      <div className="update-residential">
-        <div>
-          <label className="update-residential__label" for="street">
-            Street Address
-          </label>
-          <input
-            className="update-residential__input"
-            type="text"
-            id="street"
-            placeholder="Street Address"
-          ></input>
-        </div>
-        <div>
-          <label className="update-residential__label" for="apartment">
-            Apartment or Suite (optional)
-          </label>
-          <input
-            className="update-residential__input"
-            type="text"
-            id="apartment"
-            placeholder="Apartment or Suite #"
-          ></input>
-        </div>
-        <div>
-          <label className="update-residential__label" for="city">
-            City
-          </label>
-          <input
-            className="update-residential__input"
-            type="text"
-            id="city"
-            placeholder="City"
-          ></input>
-        </div>
-        <div className="update-residential__state-container">
+      {isLoading === false ? (
+        <form
+          method="put"
+          className="update-residential"
+          name="residential_address"
+          autoComplete="true"
+          onSubmit={handleSubmit}
+        >
           <div>
-            <label className="update-residential__label" for="state">
-              State
-            </label>
-            <State />
-          </div>
-          <div>
-            <label className="update-residential__label" for="zip">
-              ZIP Code
+            <label className="update-residential__label" htmlFor="street">
+              Street Address
             </label>
             <input
               className="update-residential__input"
               type="text"
-              id="zip"
-              placeholder="ZIP Code"
+              id="street"
+              placeholder="Street Address"
+              maxLength={38}
+              name="street_address"
+              onChange={handleChange}
+              required
             ></input>
           </div>
-        </div>
-        <div className="update-residential__button">
-          <button>Save</button>
-        </div>
-      </div>
+          <div>
+            <label className="update-residential__label" htmlFor="apartment">
+              Apartment or Suite (optional)
+            </label>
+            <input
+              className="update-residential__input"
+              type="text"
+              id="apartment"
+              placeholder="Apartment or Suite #"
+              name="apartment_suite"
+              onChange={handleChange}
+            ></input>
+          </div>
+          <div>
+            <label className="update-residential__label" htmlFor="city">
+              City
+            </label>
+            <input
+              className="update-residential__input"
+              type="text"
+              id="city"
+              placeholder="City"
+              name="city"
+              onChange={handleChange}
+              required
+            ></input>
+          </div>
+          <div className="update-residential__state-container">
+            <div>
+              <label className="update-residential__label" htmlFor="state">
+                State
+              </label>
+              <State handleChange={handleChange} />
+            </div>
+            <div>
+              <label className="update-residential__label" htmlFor="zip">
+                ZIP Code
+              </label>
+              <input
+                className="update-residential__input"
+                type="text"
+                id="zip"
+                placeholder="ZIP Code"
+                maxLength={10}
+                name="zip"
+                onChange={handleChange}
+                required
+              ></input>
+            </div>
+          </div>
+          <div className="update-residential__button">
+            <button>Save</button>
+          </div>
+        </form>
+      ) : (
+        <Loading />
+      )}
     </>
   );
-};
+}
 
 export default UpdateAddress;

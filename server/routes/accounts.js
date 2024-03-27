@@ -20,5 +20,6 @@ router.put("/reset/:username/:today-:hash", authController.putResetPassword);
 //Account information management
 router.post("/avatar", upload.single("file"), accountsController.postAvatar);
 router.put("/update/greeting", accountsController.putGreeting);
+router.put("/update/address", accountsController.putAddress);
 
 module.exports = router;
