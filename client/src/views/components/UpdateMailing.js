@@ -3,17 +3,17 @@ import State from "../../images/icons/select-state";
 import useInfo from "../../hooks/useInfo";
 import Loading from "../components/Loading";
 
-function UpdateAddress({ personalize }) {
+function UpdateMailing({ personalize }) {
   const [formData, setFormData] = useState({
-    street_address: "",
-    apartment_suite: "",
-    city: "",
-    state: "",
-    zip: "",
+    mail_address: "",
+    mail_apartment: "",
+    mail_city: "",
+    mail_state: "",
+    mail_zip: "",
   });
   const { isLoading, handleSubmit } = useInfo(
     formData,
-    "/api/update/address",
+    "/api/update/mail-address",
     personalize
   );
   const handleChange = (e) => {
@@ -30,7 +30,7 @@ function UpdateAddress({ personalize }) {
         <form
           method="put"
           className="update-residential"
-          name="residential_address"
+          name="mailing_address"
           autoComplete="true"
           onSubmit={handleSubmit}
         >
@@ -44,7 +44,7 @@ function UpdateAddress({ personalize }) {
               id="street"
               placeholder="Street Address"
               maxLength={38}
-              name="street_address"
+              name="mail_address"
               onChange={handleChange}
               required
             ></input>
@@ -58,7 +58,7 @@ function UpdateAddress({ personalize }) {
               type="text"
               id="apartment"
               placeholder="Apartment or Suite #"
-              name="apartment_suite"
+              name="mail_apartment"
               onChange={handleChange}
             ></input>
           </div>
@@ -71,7 +71,7 @@ function UpdateAddress({ personalize }) {
               type="text"
               id="city"
               placeholder="City"
-              name="city"
+              name="mail_city"
               onChange={handleChange}
               required
             ></input>
@@ -81,7 +81,7 @@ function UpdateAddress({ personalize }) {
               <label className="update-residential__label" htmlFor="state">
                 State
               </label>
-              <State handleChange={handleChange} name={"state"} />
+              <State handleChange={handleChange} name={"mail_state"} />
             </div>
             <div>
               <label className="update-residential__label" htmlFor="zip">
@@ -93,7 +93,7 @@ function UpdateAddress({ personalize }) {
                 id="zip"
                 placeholder="ZIP Code"
                 maxLength={10}
-                name="zip"
+                name="mail_zip"
                 onChange={handleChange}
                 required
               ></input>
@@ -110,4 +110,4 @@ function UpdateAddress({ personalize }) {
   );
 }
 
-export default UpdateAddress;
+export default UpdateMailing;

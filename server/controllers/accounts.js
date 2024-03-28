@@ -129,12 +129,20 @@ module.exports = {
         msg: "Invalid street address",
       });
     if (req.body.apartment_suite) {
-      if (!validator.isAlphanumeric(req.body.apartment_suite, ["en-US"]))
+      if (
+        !validator.isAlphanumeric(req.body.apartment_suite, "en-US", {
+          ignore: " ",
+        })
+      )
         validationErrors.push({
           msg: "Invalid apartment/suite",
         });
     }
-    if (!validator.isAlpha(req.body.city, ["en-US"]))
+    if (
+      !validator.isAlpha(req.body.city, "en-US", {
+        ignore: " ",
+      })
+    )
       validationErrors.push({
         msg: "Invalid city",
       });
@@ -176,6 +184,90 @@ module.exports = {
     } catch (err) {
       res.status(400).json(err);
       console.log(err);
+    }
+  },
+  putMailAddress: async (req, res) => {
+    const validationErrors = [];
+    if (
+      !validator.isAlphanumeric(req.body.mail_address, "en-US", {
+        ignore: " ",
+      })
+    )
+      validationErrors.push({
+        msg: "Invalid mailing address",
+      });
+    if (req.body.mail_apartment) {
+      if (
+        !validator.isAlphanumeric(req.body.mail_apartment, "en-US", {
+          ignore: " ",
+        })
+      )
+        validationErrors.push({
+          msg: "Invalid apartment/suite",
+        });
+    }
+    if (
+      !validator.isAlpha(req.body.mail_city, "en-US", {
+        ignore: " ",
+      })
+    )
+      validationErrors.push({
+        msg: "Invalid city",
+      });
+    if (!validator.isPostalCode(req.body.mail_zip, "US"))
+      validationErrors.push({
+        msg: "Invalid ZIP code",
+      });
+
+    if (validationErrors.length) {
+      console.log(validationErrors);
+      return res.status(400).json(validationErrors);
+    }
+
+    try {
+      await Address.findOneAndUpdate(
+        { id: req.user.id },
+        {
+          id: req.user.id,
+          mail_address: req.body.mail_address,
+          mail_apartment: req.body.mail_apartment,
+          mail_city: req.body.mail_city,
+          mail_state: req.body.mail_state,
+          mail_zip: req.body.mail_zip,
+        }
+      );
+      return res.status(200).json("Success!");
+    } catch (err) {
+      res.status(400).json(err);
+      console.log(err);
+    }
+  },
+  putEmail: async (req, res) => {
+    const validationErrors = [];
+    if (!validator.isEmail(req.body.email))
+      validationErrors.push({ msg: "Invalid Email" });
+
+    if (!validator.equals(req.body.email, req.body.confirm))
+      validationErrors.push({ msg: "Emails do not match" });
+
+    if (validationErrors.length) {
+      return res.status(400).json(validationErrors);
+    }
+    req.body.email = validator.normalizeEmail(req.body.email, {
+      gmail_remove_dots: false,
+    });
+    try {
+      const existingEmail = await Account.findOne({ email: req.body.email });
+      if (existingEmail) {
+        return res.status(400).json([{ msg: "Email already in use" }]);
+      }
+      await Account.findByIdAndUpdate(req.user.id, {
+        email: req.body.email,
+      });
+      res.status(200).json("Success!");
+    } catch (err) {
+      console.log(err);
+      res.status(400);
     }
   },
   // deleteTodo: async (req, res)=>{

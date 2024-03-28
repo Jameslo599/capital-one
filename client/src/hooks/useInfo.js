@@ -14,12 +14,12 @@ function useInfo(data, param, callback) {
       progress: undefined,
       theme: "colored",
       transition: Bounce,
-      toastId: "residentialError",
+      //toastId: "error",
     });
   const notifySuccess = () =>
     toast.success("Updated!", {
       position: "top-center",
-      autoClose: false,
+      autoClose: true,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -27,7 +27,7 @@ function useInfo(data, param, callback) {
       progress: undefined,
       theme: "colored",
       transition: Bounce,
-      toastId: "residentialSuccess",
+      // toastId: "success",
     });
   const dismissAll = () => toast.dismiss();
 
@@ -46,17 +46,12 @@ function useInfo(data, param, callback) {
       });
       const confirmation = await response.json();
       const status = await response.status;
-      console.log(status);
       if (status === 200) {
         notifySuccess();
         callback();
       } else {
-        if (confirmation.msg) {
-          for (const error of confirmation) {
-            notifyError(`${error.msg}`);
-          }
-        } else {
-          notifyError(confirmation);
+        for (const error of confirmation) {
+          notifyError(`${error.msg}`);
         }
       }
     } catch (e) {

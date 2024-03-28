@@ -1,6 +1,6 @@
 import React from "react";
 
-function SelectState({ handleChange }, props) {
+function SelectState({ handleChange, name }, props) {
   const fill = props.fill || "currentColor";
   const secondaryfill = props.secondaryfill || fill;
   const strokewidth = props.strokewidth || 3;
@@ -17,7 +17,7 @@ function SelectState({ handleChange }, props) {
 
   return (
     <div className="us-state" onClick={handleClick}>
-      <select name="state" onChange={handleChange} required>
+      <select name={name} onChange={handleChange} required>
         <option value="" disabled selected>
           --
         </option>

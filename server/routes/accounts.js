@@ -21,5 +21,7 @@ router.put("/reset/:username/:today-:hash", authController.putResetPassword);
 router.post("/avatar", upload.single("file"), accountsController.postAvatar);
 router.put("/update/greeting", accountsController.putGreeting);
 router.put("/update/address", accountsController.putAddress);
+router.put("/update/mail-address", accountsController.putMailAddress);
+router.put("/update/email", accountsController.putEmail);
 
 module.exports = router;

@@ -14,6 +14,7 @@ import UpdateAddress from "../components/UpdateAddress";
 import UpdatePhone from "../components/UpdatePhone";
 import UpdateEmail from "../components/UpdateEmail";
 import avatar from "../../images/avatar.svg";
+import UpdateMailing from "../components/UpdateMailing";
 
 function Profile() {
   const [backendData, setBackendData] = useState(null);
@@ -179,16 +180,39 @@ function Profile() {
                       <StarRate />
                     </div>
                     <span>
-                      1234 April Meadow Way
+                      {backendData.mail_address
+                        ? backendData.mail_address
+                        : backendData.street_address}
                       <br />
-                      Sugar Land, TX, 77879
+                      {backendData.mail_apartment ? (
+                        <>
+                          {backendData.mail_apartment}
+                          <br />
+                        </>
+                      ) : backendData.apartment_suite ? (
+                        <>
+                          {backendData.apartment_suite}
+                          <br />
+                        </>
+                      ) : null}
+                      {backendData.mail_city
+                        ? backendData.mail_city
+                        : backendData.city}
+                      ,{" "}
+                      {backendData.mail_state
+                        ? backendData.mail_state
+                        : backendData.state}
+                      ,{" "}
+                      {backendData.mail_zip
+                        ? backendData.mail_zip
+                        : backendData.zip}
                     </span>
                   </div>
                   <button
                     onClick={() => {
                       setOpen(true);
                       setTitle("Edit Mailing Address");
-                      setChildren(<UpdateAddress />);
+                      setChildren(<UpdateMailing personalize={personalize} />);
                     }}
                   >
                     <Pen />
@@ -286,7 +310,7 @@ function Profile() {
               <div>
                 <div className="profile-email-edit">
                   <div>
-                    <span>Email</span>
+                    <span>{backendData.email}</span>
 
                     <StarRate />
                   </div>
@@ -294,7 +318,7 @@ function Profile() {
                     onClick={() => {
                       setOpen(true);
                       setTitle("Edit Email Address");
-                      setChildren(UpdateEmail);
+                      setChildren(<UpdateEmail personalize={personalize} />);
                     }}
                   >
                     <Pen />
